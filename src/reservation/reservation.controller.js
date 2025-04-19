@@ -48,7 +48,7 @@ export const getByID = async(req, res)=>{
             .populate('room', 'name -_id')
             .populate('service', 'name -_id')
 
-        if(!company)
+        if(!reservation)
             return res.status(404).send(
                 {
                     success: false,
