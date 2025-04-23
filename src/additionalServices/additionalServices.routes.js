@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from "express"
 import {
     getAllServices,
     getServiceByID,
@@ -6,7 +6,7 @@ import {
     updateService,
     deleteService
 } from './additionalServices.controller.js'
-import { validateJwt } from "../../middlewares/validate.jwt.js";
+import { validateJwt } from "../../middlewares/validate.jwt.js"
 
 const api = Router()
 

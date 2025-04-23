@@ -1,5 +1,4 @@
-import { Schema, model } from "mongoose";
-
+import { Schema, model } from "mongoose"
 const additionalServiceSchema = Schema(
     {
         name: {
@@ -33,4 +32,4 @@ const additionalServiceSchema = Schema(
     }
 );
 
-export default model('AdditionalService', additionalServiceSchema);
+export default model('AdditionalService', additionalServiceSchema)
