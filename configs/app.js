@@ -6,9 +6,10 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
 //import authRoutes from '../src/auth/auth.routes.js'
+import userRoutes from '../src/user/user.routes.js'
 import serviceRoutes from '../src/reservation/reservation.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
-import { addDefaultAdmin } from '../src/user/user.controller.js'
+//import { addDefaultAdmin } from '../src/user/user.controller.js'
 
 const configs = (app)=>{
     app.use(express.json())
@@ -21,9 +22,10 @@ const configs = (app)=>{
 }
 
 const routes = (app)=>{
-    app.use(authRoutes)
+    //app.use(authRoutes)
     //app.use('/v1/user', userRoutes)
     app.use('/v1/service', serviceRoutes)
+    app.use('/user', userRoutes)
 }
 
 export const initServer =()=>{
@@ -33,7 +35,7 @@ export const initServer =()=>{
         routes(app)
         app.listen(process.env.PORT)
         console.log(`Server running in port: ${process.env.PORT}`)
-        addDefaultAdmin()
+        //addDefaultAdmin()
     }catch(err){
         console.error('Server init failed', err)
     }
