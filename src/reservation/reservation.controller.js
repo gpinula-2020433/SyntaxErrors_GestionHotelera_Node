@@ -1,4 +1,4 @@
-import Reservation from './reservation.model'
+import Reservation from './reservation.model.js'
 
 export const getAll = async(req, res)=>{
     const { limit, skip } = req.query

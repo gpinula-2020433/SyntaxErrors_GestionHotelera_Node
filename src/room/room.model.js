@@ -29,12 +29,20 @@ const roomSchema = new Schema(
         },
         availabilityDates: {
             type: [Date]
+        },
+        profilePicture:{
+            type:String
+        },
+        hotel: {
+            type: Schema.Types.ObjectId,
+            ref: 'Hotel',
+            required: [true, 'Hotel reference is required']
         }
     },
     {
         versionKey: false,
         timestamps: true
     }
-);
+)
 
 export default model('Room', roomSchema);
