@@ -2,9 +2,13 @@ import { Schema, model } from "mongoose";
 
 const roomSchema = new Schema(
     {
-        number: {
+        name: {
             type: String,
-            required: [true, 'Number or code is required'],
+            required: [true, 'Name is required']
+        },
+        roomNumber: {
+            type: String,
+            required: [true, 'Room number or code is required'],
             unique: true
         },
         type: {
@@ -45,4 +49,4 @@ const roomSchema = new Schema(
     }
 )
 
-export default model('Room', roomSchema);
+export default model('Room', roomSchema)

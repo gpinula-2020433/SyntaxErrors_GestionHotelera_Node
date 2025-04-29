@@ -1,6 +1,31 @@
 import Room from './room.model';
 
-//Listar todo
+
+
+//Agregar Habitación
+export const addRoom = async (req, res) => {
+    const data = req.body
+    try {
+        const room = new Room(data)
+        await room.save()
+        return res.send({
+            success: true,
+            message: 'Saved successfully',
+            room
+        })
+    } catch (err) {
+        console.error('General error', err)
+        return res.status(500).send({
+            success: false,
+            message: 'General error',
+            err
+        })
+    }
+}
+
+
+
+//Listar todas la habitaciones
 export const getAllRooms = async (req, res) => {
     const { limit, skip } = req.query
     try {
@@ -31,21 +56,22 @@ export const getAllRooms = async (req, res) => {
 
 
 
-//Listar por id
-export const getRoomByID = async (req, res) => {
+// Listar habitaciones por tipo
+export const getRoomsByType = async (req, res) => {
+    const { type } = req.params
     try {
-        const { id } = req.params
-        const room = await Room.findById(id)
-        if (!room) {
+        const rooms = await Room.find({ type })
+        if (rooms.length === 0) {
             return res.status(404).send({
                 success: false,
-                message: 'Room not found'
+                message: 'Rooms not found'
             })
         }
         return res.send({
             success: true,
-            message: 'Room found',
-            room
+            message: 'Rooms found',
+            total: rooms.length + ' rooms',
+            rooms
         })
     } catch (err) {
         console.error('General error', err)
@@ -57,28 +83,6 @@ export const getRoomByID = async (req, res) => {
     }
 }
 
-
-
-//Guardar
-export const saveRoom = async (req, res) => {
-    const data = req.body
-    try {
-        const room = new Room(data)
-        await room.save()
-        return res.send({
-            success: true,
-            message: 'Saved successfully',
-            room
-        })
-    } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send({
-            success: false,
-            message: 'General error',
-            err
-        })
-    }
-}
 
 
 //Actualizar
