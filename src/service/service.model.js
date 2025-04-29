@@ -33,4 +33,5 @@ const serviceSchema = Schema(
         timestamps: true
     }
 )
+
 export default model('Service', serviceSchema)

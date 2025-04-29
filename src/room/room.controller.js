@@ -1,7 +1,5 @@
 import Room from './room.model';
 
-
-
 //Agregar Habitación
 export const addRoom = async (req, res) => {
     const data = req.body
@@ -22,8 +20,6 @@ export const addRoom = async (req, res) => {
         })
     }
 }
-
-
 
 //Listar todas la habitaciones
 export const getAllRooms = async (req, res) => {
@@ -54,8 +50,6 @@ export const getAllRooms = async (req, res) => {
     }
 }
 
-
-
 // Listar habitaciones por tipo
 export const getRoomsByType = async (req, res) => {
     const { type } = req.params
@@ -83,8 +77,6 @@ export const getRoomsByType = async (req, res) => {
     }
 }
 
-
-
 //Actualizar
 export const updateRoom = async (req, res) => {
     try {
@@ -111,7 +103,6 @@ export const updateRoom = async (req, res) => {
         })
     }
 }
-
 
 //Eliminar
 export const deleteRoom = async (req, res) => {
