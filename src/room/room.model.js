@@ -16,6 +16,10 @@ const roomSchema = new Schema(
             required: [true, 'Type is required'],
             enum: ['individual', 'double', 'suite']
         },
+        roomDescription: {
+            type: String,
+            required: [true, 'Room Description is required']
+        },
         capacity: {
             type: Number,
             required: [true, 'Capacity is required'],
@@ -34,8 +38,8 @@ const roomSchema = new Schema(
         availabilityDates: {
             type: [Date]
         },
-        profilePicture:{
-            type:String
+        profilePicture: {
+            type: String
         },
         hotel: {
             type: Schema.Types.ObjectId,
