@@ -7,10 +7,12 @@ import helmet from 'helmet'
 import cors from 'cors'
 //import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from '../src/user/user.routes.js'
+import eventRoutes from '../src/event/event.routes.js'
 import serviceRoutes from '../src/reservation/reservation.routes.js'
 //import roomRoutes from '../src/room/room.routes.js'
 import hotelRoutes from '../src/hotel/hotel.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
+
 
 //import { addDefaultAdmin } from '../src/user/user.controller.js'
 
@@ -31,6 +33,7 @@ const routes = (app)=>{
     app.use('/v1/hotel', hotelRoutes)
     app.use('/v1/service', serviceRoutes)
     app.use('/user', userRoutes)
+    app.use('/v1/event', eventRoutes)
 }
 
 export const initServer =()=>{
