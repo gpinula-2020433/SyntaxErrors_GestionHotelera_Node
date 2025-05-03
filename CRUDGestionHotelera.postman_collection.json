@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "6d731acd-db2c-4d27-afa2-fcebf78a37d7",
+		"name": "CRUDGestionHotelera",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956970"
+	},
+	"item": [
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "PostEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Conferencia de Tecnología",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Evento sobre las nuevas tecnologías del 2025",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-06-15T14:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Hotel Intercontinental, Ciudad de Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEvent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEventById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutEvent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Boda en la Playa",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "BODA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Una hermosa boda con vista al mar",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2019",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel",
+			"item": []
+		},
+		{
+			"name": "Services",
+			"item": []
+		}
+	]
+}
