@@ -1,3 +1,4 @@
+
 import Hotel from "./hotel.model.js"
 
 export const getAllHotels = async (req, res)=> {

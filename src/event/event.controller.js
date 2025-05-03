@@ -27,9 +27,9 @@ export const getAllEvents = async (req, res) => {
             success: false,
             message: 'General error',
             err
-        })
+        });
     }
-}
+};
 
 export const getEventByID = async (req, res) => {
     try {

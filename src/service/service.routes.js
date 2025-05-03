@@ -10,10 +10,10 @@ import {
 
 const api = Router()
 
-api.get('/', [validateJwt], getAll)
+/* api.get('/', [validateJwt], getAll)
 api.get('/:id', [validateJwt], getByID)
 api.post('/', [validateJwt], save)
 api.put('/:id', [validateJwt], updateService)
-api.delete('/:id', [validateJwt], deleteService)
+api.delete('/:id', [validateJwt], deleteService) */
 
 export default api
