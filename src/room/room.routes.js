@@ -11,9 +11,10 @@ import {
 const api = Router()
 
 /*api.get('/', [validateJwt], getAllRooms)
-api.get('/:id', [validateJwt], getRoomByID)
+api.get('/:type', getRoomsByType)
 api.post('/', [validateJwt], saveRoom)
 api.put('/:id', [validateJwt], updateRoom)
 api.delete('/:id', [validateJwt], deleteRoom)*/
+
 
 export default api

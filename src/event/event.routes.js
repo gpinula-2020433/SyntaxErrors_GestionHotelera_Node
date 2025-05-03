@@ -1,19 +1,18 @@
-import { Router } from "express";
+import { Router } from 'express'
 import {
-    getAllEvents,
-    getEventByID,
-    createEvent,
-    updateEvent,
-    deleteEvent
-} from './event.controller.js';
-import { validateJwt } from "../../middlewares/validate.jwt.js";
+  getAllEvents,
+  getEventByID,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+} from './event.controller.js'
 
-const api = Router();
+const api = Router()
 
-api.get('/', [validateJwt], getAllEvents);
-api.get('/:id', [validateJwt], getEventByID);
-api.post('/', [validateJwt], createEvent);
-api.put('/:id', [validateJwt], updateEvent);
-api.delete('/:id', [validateJwt], deleteEvent);
+api.get('/', getAllEvents)
+api.get('/:id', getEventByID)
+api.post('/', createEvent)
+api.put('/:id', updateEvent)
+api.delete('/:id', deleteEvent)
 
 export default api;

@@ -2,15 +2,23 @@ import { Schema, model } from "mongoose";
 
 const roomSchema = new Schema(
     {
-        number: {
+        name: {
             type: String,
-            required: [true, 'Number or code is required'],
+            required: [true, 'Name is required']
+        },
+        roomNumber: {
+            type: String,
+            required: [true, 'Room number or code is required'],
             unique: true
         },
         type: {
             type: String,
             required: [true, 'Type is required'],
             enum: ['individual', 'double', 'suite']
+        },
+        roomDescription: {
+            type: String,
+            required: [true, 'Room Description is required']
         },
         capacity: {
             type: Number,
@@ -30,8 +38,8 @@ const roomSchema = new Schema(
         availabilityDates: {
             type: [Date]
         },
-        profilePicture:{
-            type:String
+        profilePicture: {
+            type: String
         },
         hotel: {
             type: Schema.Types.ObjectId,
@@ -45,4 +53,4 @@ const roomSchema = new Schema(
     }
 )
 
-export default model('Room', roomSchema);
+export default model('Room', roomSchema)
