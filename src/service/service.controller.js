@@ -1,4 +1,4 @@
-import Service from './service.model'
+import Service from './service.model.js'
 
 export const getAll = async(req, res)=>{
     const { limit, skip } = req.query
