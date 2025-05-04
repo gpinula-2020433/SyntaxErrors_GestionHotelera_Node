@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "820c2234-f456-4cdd-b1fa-20a56ab78c56",
+		"_postman_id": "5f7df109-6ae1-446d-9207-9bc5934c4653",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956966"
+		"_exporter_id": "37957002"
 	},
 	"item": [
 		{
@@ -39,12 +39,12 @@
 							"urlencoded": [
 								{
 									"key": "userLoggin",
-									"value": "ppamal",
+									"value": "1pinula",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "StrongPas.sword123",
+									"value": "123123Aa!",
 									"type": "text"
 								}
 							]
@@ -633,6 +633,201 @@
 								"v1",
 								"service",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllService",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteService",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateService",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Servicio de limpieza ",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "LIMPIEZA 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Limpieza profunda de las habitaciones",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateService",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Servicio de limpieza ",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "LIMPIEZA 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Limpieza profunda de las habitaciones",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
 							]
 						}
 					},
