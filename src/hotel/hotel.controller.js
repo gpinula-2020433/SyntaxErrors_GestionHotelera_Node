@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 
 import Hotel from "./hotel.model.js"
 
@@ -62,15 +64,18 @@ export const getHotelById = async (req, res)=>{
 
 export const addHotel = async(req, res)=>{
     try{
-
-        const data = req.body
-        const hotel = new Hotel(data)
+        let data = req.body
+        if (req.file?.filename) {
+            data.imageHotel = req.file.filename;
+        }
+        let hotel = new Hotel(data)
         await hotel.save()
 
+        hotel = await Hotel.findById(hotel._id).populate('services', "name type description price")
         return res.send(
             {
                 success: true,
-                message: `Saved successfully`,
+                message: `Hotel successfully, ${hotel.name}`,
                 hotel
             }
         )
@@ -89,17 +94,16 @@ export const updateHotel = async (req, res)=>{
     try{
         const {id} = req.params
         const data = req.body
-        const update = await Hotel.findByIdAndUpdate(
-            id,
-            data,
-            {new: true}
-        )
+        
+        const update = await Hotel.findByIdAndUpdate(id, data, { new: true }).populate('services')
         if(!update)return res.status(404).send(
             {
                 success: false,
                 message: 'Hotel not found'
             }
         )
+
+        
         return res.send(
             {
                 success: true,
@@ -144,3 +148,84 @@ export const deleteHotel = async(req, res)=> {
     })
 }
 }
+
+
+/* export const updateHotelImage = async(req, res)=>{
+    try{
+        const  {id}  = req.params
+        const { filename } = req.file
+        const hotel = await Hotel.findByIdAndUpdate(
+            id,
+            {
+                imageHotel: filename
+            },
+            { new: true }
+        )
+        if(!hotel) return res.status(404).send(
+            {
+                success: false,
+                message: 'Hotel not found - not updated'
+            }
+        )
+        return res.send(
+            {
+                success: true,
+                message: 'Hotel updated successfully',
+                hotel
+            }
+        )
+    }catch(err){
+        console.error('General error', err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error', 
+                err
+            }
+        )
+    }
+}
+ */
+
+
+export const updateHotelImage = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { filename } = req.file;
+
+        const hotel = await Hotel.findById(id)
+        if (!hotel) {
+            return res.status(404).send({
+                success: false,
+                message: 'Hotel not found'
+            });
+        }
+
+        const oldImage = hotel.imageHotel
+
+        
+        if (oldImage) {
+            const imagePath = path.join(process.cwd(), 'uploads', 'img', oldImage);
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
+        }
+
+        
+        hotel.imageHotel = filename;
+        await hotel.save();
+
+        return res.send({
+            success: true,
+            message: 'Hotel image updated successfully',
+            hotel
+        });
+    } catch (err) {
+        console.error('Error updating hotel image:', err);
+        return res.status(500).send({
+            success: false,
+            message: 'General error',
+            err
+        });
+    }
+};

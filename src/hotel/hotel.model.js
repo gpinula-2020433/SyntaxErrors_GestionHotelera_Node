@@ -29,15 +29,20 @@ const hotelSchema = new Schema(
     amenities: {
       type: [String],
       required: [true, 'Amenities are required']
-    }/* ,
-    imageHotel: {
+    },
+    services: [{
+      type: Schema.Types.ObjectId, //Validación
+      ref: 'Service',
+      required: [true, 'Service is required']
+    }],
+    imageHotel : {
       type: String
-    } */
+    }
   },
   {
     versionKey: false,
     timestamps: true
   }
-);
+)
 
 export default model("Hotel", hotelSchema);

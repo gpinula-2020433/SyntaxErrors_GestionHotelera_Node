@@ -364,11 +364,11 @@
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
 									"key": "name",
-									"value": "Hotel Lago Del reyna",
+									"value": "Nose",
 									"type": "text"
 								},
 								{
@@ -394,6 +394,21 @@
 								{
 									"key": "amenities",
 									"value": "Parqueo",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "6817d3e356fceefe4166a105",
+									"type": "text"
+								},
+								{
+									"key": "imageHotel",
+									"type": "file",
+									"src": "/C:/Users/Usuario/Desktop/img.png"
+								},
+								{
+									"key": "amenities",
+									"value": "Nose",
 									"type": "text"
 								}
 							]

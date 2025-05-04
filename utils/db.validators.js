@@ -144,3 +144,12 @@ export const isRoomAvailable = async (hotelId, roomIds, startDate, endDate) => {
     throw new Error('One or more rooms are already booked during the selected dates')
   }
 }
+
+
+export const existsNameHotel = async(nameHotel)=>{
+  const existsHotel = await Hotel.findOne({nameHotel})
+  if(existsHotel){
+    console.error(`Hotel already Exists`)
+    throw new Error(`Hotel already exists`)
+  }
+}
