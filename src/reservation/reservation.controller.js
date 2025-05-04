@@ -1,4 +1,6 @@
 import Reservation from './reservation.model.js'
+import Invoice from '../invoice/invoice.model.js'
+import Room from '../room/room.model.js'
 
 export const getAll = async(req, res)=>{
     const { limit, skip } = req.query
@@ -74,29 +76,65 @@ export const getByID = async(req, res)=>{
     }
 }
 
-export const save = async(req, res)=>{
+export const save = async (req, res) => {
     const data = req.body
+  
     try {
-        data.user = req.user.uid
-        const reservation = new Reservation(data)
-        await reservation.save()
-
-        return res.send(
-            {
-                success: true,
-                message: 'Saved successfully',
-                reservation
-            }
-        )
+      data.customer = req.user.uid
+  
+      if (!Array.isArray(data.room) || data.room.length === 0) {
+        return res.status(400).send({ success: false, message: 'At least one room is required' })
+      }
+      if (!data.startDate || !data.endDate || !data.typeOfPayment || !data.NIT) {
+        return res.status(400).send({
+          success: false,
+          message: 'Start date, end date, NIT and typeOfPayment are required'
+        })
+      }
+  
+      const start = new Date(data.startDate)
+      const end   = new Date(data.endDate)
+      const msInDay = 1000 * 60 * 60 * 24
+      const daysCount = Math.ceil((end - start) / msInDay)
+      if (daysCount <= 0) {
+        return res.status(400).send({ success: false, message: 'End date must be after start date' })
+      }
+  
+      const rooms = await Room.find({ _id: { $in: data.room } })
+      if (rooms.length !== data.room.length) {
+        return res.status(404).send({ success: false, message: 'One or more rooms not found' })
+      }
+  
+      const pricePerNight = rooms.reduce((sum, r) => sum + r.pricePerNight, 0)
+      const total = pricePerNight * daysCount
+  
+      const reservation = new Reservation(data)
+      await reservation.save()
+  
+      const invoice = new Invoice({
+        customer: data.customer,
+        NIT: data.NIT,
+        room: data.room,
+        days: rooms.map(() => daysCount),
+        pricePerNight,
+        total,
+        typeOfPayment: data.typeOfPayment
+      });
+      await invoice.save()
+  
+      return res.send({
+        success: true,
+        message: 'Reservation and invoice saved successfully',
+        reservation,
+        invoice
+      })
     } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error',
-                err
-            }
-        )
+      console.error('General error', err)
+      return res.status(500).send({
+        success: false,
+        message: 'General error',
+        err
+      })
     }
 }
 
@@ -166,4 +204,3 @@ export const deleteR = async(req, res)=>{
         )
     }
 }
-

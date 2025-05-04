@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const reservationSchema = Schema(
     {
-        user: {
+        customer: {
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: [true, 'User is required']
@@ -13,10 +13,15 @@ const reservationSchema = Schema(
             required: [true, 'Hotel is required']
         },
         room: {
-            type: Schema.Types.ObjectId,
-            ref: 'Room',
-            required: [true, 'Room is required']
-        },
+            type: [
+              {
+                type: Schema.Types.ObjectId,
+                ref: 'Room',
+                required: [true, 'Room is required']
+              }
+            ],
+            validate: [(val) => val.length > 0, 'At least one room must be selected']
+          },
         service: {
             type: Schema.Types.ObjectId,
             ref: 'Service',
@@ -29,6 +34,12 @@ const reservationSchema = Schema(
             type: Date,
             required: [true, 'End Date is required']
         },
+        typeOfPayment: {
+            type: String,
+            required: [true, 'Type of payment is required'],
+            enum: ['CARD', 'CASH'],
+            uppercase: true
+          },
         status: {
             type: String,
             enum: ['ACTIVA', 'CANCELADA', 'FINALIZADA'],
@@ -38,7 +49,7 @@ const reservationSchema = Schema(
     },
     {
         versionKey: false,
-        timestamps: true
+        timestamps: true 
     }
 )
 export default model('Reservation' , reservationSchema)

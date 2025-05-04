@@ -4,21 +4,26 @@ const roomSchema = new Schema(
     {
         name: {
             type: String,
-            required: [true, 'Name is required']
+            required: [true, 'Name is required'],
+            minlength: [3, 'Name must be at least 3 characters'],
+            maxlength: [50, 'Name must be at most 50 characters']
+
         },
         roomNumber: {
             type: String,
-            required: [true, 'Room number or code is required'],
-            unique: true
+            required: [true, 'Room number or code is required']
         },
         type: {
             type: String,
             required: [true, 'Type is required'],
-            enum: ['individual', 'double', 'suite']
+            enum: ['INDIVIDUAL', 'DOUBLE', 'SUITE']
         },
         roomDescription: {
             type: String,
-            required: [true, 'Room Description is required']
+            required: [true, 'Room Description is required'],
+            minlength: [10, 'Room description must be at least 10 characters'],
+            maxlength: [500, 'Room description must be at most 500 characters']
+
         },
         capacity: {
             type: Number,
@@ -33,12 +38,12 @@ const roomSchema = new Schema(
         status: {
             type: String,
             required: [true, 'State is required'],
-            enum: ['available', 'busy', 'maintenance']
+            enum: ['AVAILABLE', 'BUSY', 'MAINTENANCE']
         },
         availabilityDates: {
             type: [Date]
         },
-        profilePicture: {
+        imageRoom: {
             type: String
         },
         hotel: {
@@ -48,7 +53,7 @@ const roomSchema = new Schema(
         }
     },
     {
-        versionKey: false,
+        versionKey: false, 
         timestamps: true
     }
 )

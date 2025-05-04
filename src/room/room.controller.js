@@ -1,23 +1,31 @@
-import Room from './room.model';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import Room from './room.model.js'
+import { isRoomNumber } from '../../utils/db.validators.js'
+
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 //Agregar Habitación
 export const addRoom = async (req, res) => {
     const data = req.body
     try {
-        const room = new Room(data)
-        await room.save()
-        return res.send({
-            success: true,
-            message: 'Saved successfully',
-            room
-        })
+      await isRoomNumber(data.roomNumber, data.hotel)
+      const room = new Room(data)
+      await room.save()
+      return res.send({
+        success: true,
+        message: 'Saved successfully',
+        room
+      })
     } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send({
-            success: false,
-            message: 'General error',
-            err
-        })
+      console.error('Error creating room:', err.message)
+      return res.status(400).send({
+        success: false,
+        message: err.message || 'General error'
+      })
     }
 }
 
@@ -80,27 +88,44 @@ export const getRoomsByType = async (req, res) => {
 //Actualizar
 export const updateRoom = async (req, res) => {
     try {
-        const { id } = req.params
-        const data = req.body
-        const update = await Room.findByIdAndUpdate(id, data, { new: true })
-        if (!update) {
-            return res.status(404).send({
-                success: false,
-                message: 'Room not found'
-            })
+      const { id } = req.params
+      const data = req.body
+  
+      const existingRoom = await Room.findById(id)
+      if (!existingRoom) {
+        return res.status(404).send({
+          success: false,
+          message: 'Room not found'
+        })
+      }
+  
+      if (req.file) {
+        const imageDir = path.join(__dirname, '../../uploads/img')
+        if (existingRoom.profilePicture) {
+          const oldImagePath = path.join(imageDir, existingRoom.profilePicture)
+          if (fs.existsSync(oldImagePath)) {
+            fs.unlinkSync(oldImagePath)
+          }
         }
-        return res.send({
-            success: true,
-            message: 'Room updated',
-            update
-        })
+        data.profilePicture = req.file.filename
+      }
+  
+      await isRoomNumber(data.roomNumber, data.hotel, id)
+  
+      const update = await Room.findByIdAndUpdate(id, data, { new: true })
+  
+      return res.send({
+        success: true,
+        message: 'Room updated',
+        update
+      })
+  
     } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send({
-            success: false,
-            message: 'General error',
-            err
-        })
+      console.error('Error updating room:', err.message)
+      return res.status(400).send({
+        success: false,
+        message: err.message || 'General error'
+      })
     }
 }
 
