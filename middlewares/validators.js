@@ -1,7 +1,7 @@
 //Validar campos en las rutas
 import { body } from "express-validator";
-import { validateErrors, validateErrorsWithoutFiles } from "./validate.errors.js";
-import { existHotelName,existUsername,existEmail, objectIdValid, validateServices, isNITUnique, validatePaymentType, isRoomNumber } from "../utils/db.validators.js";
+import { validateErrors } from "./validate.errors.js";
+import { existHotel,existUsername,existEmail, objectIdValid, validateServices, isNITUnique, validatePaymentType, isRoomNumber } from "../utils/db.validators.js";
 
 export const validateCreateEvent = [
   body('title', 'Title is required')
@@ -89,7 +89,7 @@ export const registerValidator = [
 export const hotelValidator = [
     body('name', 'Hotel name cannot be empty')
         .notEmpty()
-        .custom(existHotelName),
+        .custom(existHotel),
     body('address', 'Address cannot be empty')
         .notEmpty(),
     body('description', 'Description cannot be empty')

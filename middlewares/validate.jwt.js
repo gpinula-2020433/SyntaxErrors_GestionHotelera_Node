@@ -16,7 +16,10 @@ export const validateJwt = async(req, res, next)=>{
                 message: 'User not found - Unauthorized'
             }
         )
-        req.user = user
+        req.user = {
+            _id: user.uid,
+            role: user.role
+        }
         next()
     } catch (err) {
         console.error(err)
@@ -42,5 +45,21 @@ export const isAdmin = async(req, res, next)=>{
                 message: 'Error with authorization'
             }
         )
+    }
+}
+
+export const isClient = async(req, res, next)=>{
+    try {
+        let { role, username } = req.user
+        if(!role || role !== 'CLIENT') return res.status(403).send(
+            {
+                succes: false,
+                message: `You dont have access | username ${username}`
+            }
+        )
+        next()
+    } catch (err) {
+        console.error(err)
+        return res.status(401).send({message: 'Unauthorized role'})
     }
 }
