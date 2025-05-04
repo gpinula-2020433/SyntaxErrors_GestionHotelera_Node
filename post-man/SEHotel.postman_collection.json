@@ -1,0 +1,1150 @@
+{
+	"info": {
+		"_postman_id": "820c2234-f456-4cdd-b1fa-20a56ab78c56",
+		"name": "SEHotel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956966"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "LoginAdmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "ppamal",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "StrongPas.sword123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "RegisterCliente1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Gabriel",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Pinula",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "1pinula",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "gpinula@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123Aa!",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123123123",
+									"type": "text"
+								},
+								{
+									"key": "role ",
+									"value": "ADMIN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "PostEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Conferencia de Tecnología",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Evento sobre las nuevas tecnologías del 2025",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-06-15T14:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Hotel Intercontinental, Ciudad de Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEvent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEventById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutEvent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Boda en la Playa",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "BODA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Una hermosa boda con vista al mar",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2019",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel",
+			"item": [
+				{
+					"name": "gelAllHotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "gelAllHotelsId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/680b2eb2b02a2452416844a4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								"680b2eb2b02a2452416844a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addHotel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Hotel Lago Del reyna",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Avenida Central 45, Ciudad del Sol",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Un hotel de lujo frente al lago, ideal para vacaciones y eventos especiales.",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "50245678901",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "Parqueo",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "Salas de reuniones",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "WiFI",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "681722674c37cbc27d4b49ef",
+									"type": "text"
+								},
+								{
+									"key": "imageHotel",
+									"type": "file",
+									"src": "/C:/Users/Pamal/Downloads/hotel.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteHotel",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/6815f7e2af6a0dd5c90d6563",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								"6815f7e2af6a0dd5c90d6563"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putHotel",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Hotel Lago Del rey",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Avenida Central 45, Ciudad del Sol",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Un hotel de lujo frente al lago, ideal para vacaciones y eventos especiales.",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "50245678901",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "Parqueo",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "Salas de reuniones",
+									"type": "text"
+								},
+								{
+									"key": "amenities",
+									"value": "WiFi",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "6815b12f6a2f15cd18c3ae16",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/6815f81ed7e2e387f710f4eb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								"6815f81ed7e2e387f710f4eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateHotelImage",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageHotel",
+									"type": "file",
+									"src": "/C:/Users/PC/Pictures/Screenshots/Captura de pantalla (3).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/updateHotelImage/6815fa0f2e77a0af0218b791",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								"updateHotelImage",
+								"6815fa0f2e77a0af0218b791"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service",
+			"item": [
+				{
+					"name": "addService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Servicio de limpieza profunda",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "LIMPIEZA",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Limpieza profunda de las habitaciones y áreas comunes del hotel",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "150",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/service/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLoggin",
+									"value": "Ppamal",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "StrongPas.sword123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Dylan",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Geronimo",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Dgeronimo",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Dgeronimo@gmai.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "111asdAdl.",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "addRoom",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Habitación Personal",
+									"type": "text"
+								},
+								{
+									"key": "roomNumber",
+									"value": "A-25",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "INDIVIDUAL",
+									"type": "text"
+								},
+								{
+									"key": "roomDescription",
+									"value": "Habitación ideal para una buena comodidad",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "425.00",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AVAILABLE",
+									"type": "text"
+								},
+								{
+									"key": "availabilityDates",
+									"value": "2025-05-4",
+									"type": "text"
+								},
+								{
+									"key": "imageRoom",
+									"type": "file",
+									"src": "/C:/Users/Pamal/Downloads/habitacion02.jpg"
+								},
+								{
+									"key": "hotel",
+									"value": "681722e34c37cbc27d4b49f4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/room/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"room",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllRooms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/v1/room/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"room",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTypeRooms",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3200/v1/room/get/INDIVIDUAL",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"room",
+								"get",
+								"INDIVIDUAL"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRoom",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Habitación deluxe",
+									"type": "text"
+								},
+								{
+									"key": "roomNumber",
+									"value": "A-25",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "DOUBLE",
+									"type": "text"
+								},
+								{
+									"key": "roomDescription",
+									"value": "Habitación ideal para una buena comodidad",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "595.00",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AVAILABLE",
+									"type": "text"
+								},
+								{
+									"key": "availabilityDates",
+									"value": "2025-05-5",
+									"type": "text"
+								},
+								{
+									"key": "imageRoom",
+									"type": "file",
+									"src": "/C:/Users/Pamal/Downloads/habitacion.jpg"
+								},
+								{
+									"key": "hotel",
+									"value": "681722e34c37cbc27d4b49f4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/room/update/68172d005a444da6e8ec457d",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"room",
+								"update",
+								"68172d005a444da6e8ec457d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRoom",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Habitación luxe",
+									"type": "text"
+								},
+								{
+									"key": "roomNumber",
+									"value": "A-25",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "DOUBLE",
+									"type": "text"
+								},
+								{
+									"key": "roomDescription",
+									"value": "Habitación ideal para una buena comodidad",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "pricePerNight",
+									"value": "595.00",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "AVAILABLE",
+									"type": "text"
+								},
+								{
+									"key": "availabilityDates",
+									"value": "2025-05-3",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/room/delete/68172cf35a444da6e8ec4579",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"room",
+								"delete",
+								"68172cf35a444da6e8ec4579"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Invoice",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3200/v1/invoice/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"invoice",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3200/v1/invoice/getCustomer/",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"invoice",
+								"getCustomer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3200/v1/invoice/getId/",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"invoice",
+								"getId",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateInvoice",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3200/v1/invoice/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"invoice",
+								"update",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

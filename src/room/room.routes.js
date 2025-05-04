@@ -1,20 +1,23 @@
 import { Router } from "express";
 import {
+    addRoom,
     getAllRooms,
-    getRoomByID,
-    saveRoom,
+    getRoomsByType,
     updateRoom,
     deleteRoom
 } from './room.controller.js'
-//import { validateJwt } from "../../middlewares/validate.jwt.js";
+import { validateCreateRoom, validateUpdateRoom } from "../../middlewares/validators.js";
+import { isAdmin, validateJwt } from "../../middlewares/validate.jwt.js";
+import { uploadProfilePicture } from "../../middlewares/multer.uploads.js";
+import { deleteFileOnError } from "../../middlewares/delete.file.on.errors.js";
 
 const api = Router()
 
-/*api.get('/', [validateJwt], getAllRooms)
-api.get('/:type', getRoomsByType)
-api.post('/', [validateJwt], saveRoom)
-api.put('/:id', [validateJwt], updateRoom)
-api.delete('/:id', [validateJwt], deleteRoom)*/
+api.post('/add', [validateCreateRoom, validateJwt, isAdmin, uploadProfilePicture.single("imageRoom"), deleteFileOnError] ,addRoom)
+api.get('/getAll', [validateJwt], getAllRooms)
+api.get('/get/:type', [validateJwt], getRoomsByType)
+api.put('/update/:id', [validateJwt, isAdmin, validateUpdateRoom, uploadProfilePicture.single("imageRoom"), deleteFileOnError] ,updateRoom)
+api.delete('/delete/:id', [validateJwt, isAdmin], deleteRoom)
 
 
 export default api
