@@ -1,38 +1,15 @@
-import Event from './event.model.js'
 import { existHotel } from '../../utils/db.validators.js'
 import { existService } from '../../utils/db.validators.js'
 
 // Obtener todos los eventos
 export const getAllEvents = async (req, res) => {
-    const { limit = 10, skip = 0 } = req.query;
-    try {
-        const events = await Event.find()
-            .skip(Number(skip))
-            .limit(Number(limit))
-            .populate('hotel', 'name -_id')
-
-        if (events.length === 0) {
-            return res.status(404).send({
-                success: false,
-                message: 'No events found'
-            })
-        }
-
-        return res.send({
-            success: true,
-            message: 'Events found',
-            total: events.length,
-            events
-        })
-    } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send({
-            success: false,
-            message: 'General error',
-            err
-        });
-    }
-};
+  try {
+    const events = await Event.find().populate('services').populate('hotel')
+    res.status(200).json(events);
+  } catch (err) {
+    res.status(500).json({ message: 'Error al obtener los eventos', error: err })
+  }
+}
 
 export const getEventByID = async (req, res) => {
   const { id } = req.params
@@ -95,28 +72,14 @@ export const updateEvent = async (req, res) => {
   }
 }
 export const deleteEvent = async (req, res) => {
-    try {
-        const { id } = req.params
-
-        const deleted = await Event.findByIdAndDelete(id)
-
-        if (!deleted) {
-            return res.status(404).send({
-                success: false,
-                message: 'Event not found'
-            })
-        }
-
-        return res.send({
-            success: true,
-            message: 'Event deleted successfully'
-        })
-    } catch (err) {
-        console.error('General error', err)
-        return res.status(500).send({
-            success: false,
-            message: 'General error',
-            err
-        })
+  const { id } = req.params;
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(id)
+    if (!deletedEvent) {
+      return res.status(404).json({ message: 'Evento no encontrado' })
     }
-}
+    res.status(200).json({ message: 'Evento eliminado con éxito' })
+  } catch (err) {
+    res.status(500).json({ message: 'Error al eliminar el evento', error: err })
+  }
+};
