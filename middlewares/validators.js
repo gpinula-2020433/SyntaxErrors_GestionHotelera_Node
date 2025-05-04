@@ -1,7 +1,7 @@
-//Validar campos en las rutas
+// Validar campos en las rutas
 import { body } from "express-validator";
 import { validateErrors } from "./validate.errors.js";
-import { existHotel,existUsername,existEmail, objectIdValid, validateServices, isNITUnique, validatePaymentType, isRoomNumber } from "../utils/db.validators.js";
+import { existHotel, existUsername, existEmail, objectIdValid, validateServices, isNITUnique, validatePaymentType, isRoomNumber } from "../utils/db.validators.js";
 
 export const validateCreateEvent = [
   body('title', 'Title is required')
@@ -62,7 +62,7 @@ export const registerValidator = [
         .notEmpty(),
     body('surname', 'Surname cannot be empty')
         .notEmpty(),
-        body('username', 'Username cannot be empty')
+    body('username', 'Username cannot be empty')
         .notEmpty()
         .toLowerCase(),
     body('email', 'Email cannot be empty')
@@ -84,7 +84,6 @@ export const registerValidator = [
         .isMobilePhone(),
     validateErrors
 ]
-
 
 export const hotelValidator = [
     body('name', 'Hotel name cannot be empty')
@@ -110,11 +109,10 @@ export const hotelValidator = [
     body('services', 'service cannot be empty')
         .notEmpty()
         .custom(validateServices),
-    
-        validateErrors
-  ]
+    validateErrors
+]
 
-  export const validateUpdateHotel = [
+export const validateUpdateHotel = [
     body("name")
       .notEmpty()
       .withMessage("Name is required"),
@@ -137,11 +135,10 @@ export const hotelValidator = [
     body('services', 'service cannot be empty')
         .notEmpty()
         .custom(validateServices),
-    
     validateErrors,
-  ];
+];
 
-//Validar crear factura 
+// Validar creación de habitación
 export const validateCreateRoom = [
   body('name', 'Name is required')
   .notEmpty()
@@ -179,11 +176,11 @@ export const validateCreateRoom = [
     .notEmpty()
     .custom(async (value) => {
       await objectIdValid(value)
-      await existHotelName(value)
+      await existHotel(value)
     }),
 ]
 
-//Validar actualizar habitación 
+// Validar actualización de habitación
 export const validateUpdateRoom = [
   body('name', 'Name is required')
     .notEmpty()
@@ -221,11 +218,11 @@ export const validateUpdateRoom = [
     .notEmpty()
     .custom(async (value) => {
       await objectIdValid(value)
-      await existHotelName(value)
+      await existHotel(value)
     }),
 ]
 
-//Validar actualizar factura 
+// Validar actualización de factura
 export const validateUpdateInvoice = [
   body('room', 'Room is required and must be an array of valid IDs')
     .isArray({ min: 1 })

@@ -1,4 +1,4 @@
-//Validar datos relacionados a la BD
+// Validar datos relacionados a la BD
 
 import Hotel from '../src/hotel/hotel.model.js'
 import { isValidObjectId } from 'mongoose'
@@ -6,8 +6,8 @@ import User from '../src/user/user.model.js'
 import Service from '../src/service/service.model.js'  // Modelo Service
 import Room from '../src/room/room.model.js'
 import Invoice from '../src/invoice/invoice.model.js'
-//import User from '../src/user/user.model.js';  // Puedes descomentar y usar este import si es necesario
 
+// Validar existencia de un hotel
 export const existHotel = async (hotelId) => {
   if (!isValidObjectId(hotelId)) {
     throw new Error('Invalid hotel ObjectId')
@@ -18,6 +18,7 @@ export const existHotel = async (hotelId) => {
   }
 }
 
+// Validar existencia de un servicio
 export const existService = async (serviceId) => {
   if (!isValidObjectId(serviceId)) {
     throw new Error('Invalid service ObjectId')
@@ -28,6 +29,7 @@ export const existService = async (serviceId) => {
   }
 }
 
+// Validar existencia de un nombre de usuario (debe ser único para cada usuario)
 export const existUsername = async (username, user) => {
   const alreadyUsername = await User.findOne({ username })
   if (alreadyUsername && alreadyUsername._id != user.uid) {
@@ -36,6 +38,7 @@ export const existUsername = async (username, user) => {
   }
 }
 
+// Validar existencia de un email (debe ser único para cada usuario)
 export const existEmail = async (email, user) => {
   const alreadyEmail = await User.findOne({ email })
   if (alreadyEmail && alreadyEmail._id != user.uid) {
@@ -44,12 +47,14 @@ export const existEmail = async (email, user) => {
   }
 }
 
+// Verificar si el campo no es requerido
 export const notRequiredField = (field) => {
   if (field) {
     throw new Error(`${field} is not required`)
   }
 }
 
+// Validar que el ID de un usuario exista
 export const findUser = async (id) => {
   try {
     const userExist = await User.findById(id)
@@ -61,48 +66,14 @@ export const findUser = async (id) => {
   }
 }
 
-//Validar que sea un id  la llave foranea
-
-
-export const objectIdValid = (objectId)=>{
-    if(!isValidObjectId(objectId)) {
-        throw new Error(`The value of field is not a valid ObjectId`)
-    }
-}
-
-export const validateServices = (services) => {
-    // Si `services` es un solo valor, convertirlo en un array
-    if (!Array.isArray(services)) {
-      services = [services];
-    }
-  
-    // Verificar que el array no esté vacío
-    if (services.length === 0) {
-      throw new Error('At least one service must be provided');
-    }
-  
-    // Verificar que cada elemento del array sea un ObjectId válido
-    services.forEach(serviceId => {
-      if (!isValidObjectId(serviceId)) {
-        throw new Error(`Invalid service ID: ${serviceId}`);
-      }
-    });
-    return true;
-  };
-
-  
-//Validar número de habitación unico por hotel
-export const isRoomNumber = async (roomNumber, hotelId, roomId = null) => {
-  const existingRoom = await Room.findOne({ roomNumber, hotel: hotelId })
-
-  if (existingRoom) {
-    if (!roomId || existingRoom._id.toString() !== roomId.toString()) {
-      throw new Error(`Room number "${roomNumber}" already exists in this hotel`)
-    }
+// Validar que un ObjectId sea válido
+export const objectIdValid = (objectId) => {
+  if (!isValidObjectId(objectId)) {
+    throw new Error(`The value of field is not a valid ObjectId`)
   }
 }
 
-// Validar que el NIT sea único por cliente (excepto en la factura actual)
+// Validar que el NIT de un cliente sea único (para cada cliente)
 export const isNITUnique = async (NIT, customerId, invoiceId = null) => {
   if (!NIT) {
     throw new Error('NIT is required')
@@ -115,7 +86,7 @@ export const isNITUnique = async (NIT, customerId, invoiceId = null) => {
   }
 }
 
-// Validar el tipo de pago sea válido
+// Validar el tipo de pago (CASH o CARD)
 export const validatePaymentType = (type) => {
   const valid = ['CASH', 'CARD']
   if (!type) {
@@ -126,12 +97,50 @@ export const validatePaymentType = (type) => {
   }
 }
 
-/* Ejemplo de como podrian hacerse validaciones NOTA: ELIMINAR Despues
-export const existNameCompany = async(name)=>{
-    const alreadyName = await Company.findOne({name})
-    if(alreadyName){
-        console.error(`The company | ${name} | already exists`)
-        throw new Error(`The company | ${name} | already exists`)
+// Validar número de habitación único por hotel
+export const isRoomNumber = async (roomNumber, hotelId, roomId = null) => {
+  const existingRoom = await Room.findOne({ roomNumber, hotel: hotelId })
+
+  if (existingRoom) {
+    if (!roomId || existingRoom._id.toString() !== roomId.toString()) {
+      throw new Error(`Room number "${roomNumber}" already exists in this hotel`)
     }
+  }
 }
-*/
+
+// Validar que los servicios sean ObjectIds válidos
+export const validateServices = (services) => {
+  // Si `services` es un solo valor, convertirlo en un array
+  if (!Array.isArray(services)) {
+    services = [services]
+  }
+
+  // Verificar que el array no esté vacío
+  if (services.length === 0) {
+    throw new Error('At least one service must be provided')
+  }
+
+  // Verificar que cada elemento del array sea un ObjectId válido
+  services.forEach(serviceId => {
+    if (!isValidObjectId(serviceId)) {
+      throw new Error(`Invalid service ID: ${serviceId}`)
+    }
+  })
+  return true
+}
+
+// Validar la disponibilidad de habitaciones durante las fechas seleccionadas
+export const isRoomAvailable = async (hotelId, roomIds, startDate, endDate) => {
+  const overlappingReservations = await Reservation.find({
+    hotel: hotelId,
+    room: { $in: roomIds },
+    status: { $ne: 'CANCELADA' },
+    $or: [
+      { startDate: { $lte: endDate }, endDate: { $gte: startDate } }
+    ]
+  })
+
+  if (overlappingReservations.length > 0) {
+    throw new Error('One or more rooms are already booked during the selected dates')
+  }
+}
