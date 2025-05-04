@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1a5e33c0-3793-434c-a843-392fbcb23468",
+		"_postman_id": "e1e90dc1-ad56-48f6-82a7-b6c8763f4e17",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956970"
+		"_exporter_id": "37957002"
 	},
 	"item": [
 		{
@@ -364,8 +364,8 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
+							"mode": "urlencoded",
+							"urlencoded": [
 								{
 									"key": "name",
 									"value": "Hotel Lago Del reyna",
@@ -395,26 +395,6 @@
 									"key": "amenities",
 									"value": "Parqueo",
 									"type": "text"
-								},
-								{
-									"key": "amenities",
-									"value": "Salas de reuniones",
-									"type": "text"
-								},
-								{
-									"key": "amenities",
-									"value": "WiFI",
-									"type": "text"
-								},
-								{
-									"key": "services",
-									"value": "6817c5dc2917cd71b54abd03",
-									"type": "text"
-								},
-								{
-									"key": "imageHotel",
-									"type": "file",
-									"src": "/C:/Users/Pamal/Downloads/hotel.jpg"
 								}
 							]
 						},

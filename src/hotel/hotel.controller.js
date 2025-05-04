@@ -62,13 +62,15 @@ export const getHotelById = async (req, res)=>{
 
 export const addHotel = async(req, res)=>{
     try{
-        let data = req.body
-        let hotel = new Hotel(data)
+
+        const data = req.body
+        const hotel = new Hotel(data)
         await hotel.save()
+
         return res.send(
             {
                 success: true,
-                message: `Hotel successfully, ${hotel.name}`,
+                message: `Saved successfully`,
                 hotel
             }
         )

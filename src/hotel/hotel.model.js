@@ -29,10 +29,10 @@ const hotelSchema = new Schema(
     amenities: {
       type: [String],
       required: [true, 'Amenities are required']
-    },
+    }/* ,
     imageHotel: {
       type: String
-    }
+    } */
   },
   {
     versionKey: false,

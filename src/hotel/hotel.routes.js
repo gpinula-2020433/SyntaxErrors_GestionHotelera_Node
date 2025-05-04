@@ -3,6 +3,7 @@ import { addHotel, getAllHotels } from "./hotel.controller.js";
 
 const api = Router()
 api.get('/',getAllHotels)
-api.post('/',addHotel)
+
+api.post('/', addHotel)
 
 export default api

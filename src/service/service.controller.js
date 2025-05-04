@@ -69,7 +69,6 @@ export const getByID = async(req, res)=>{
 export const save = async(req, res)=>{
     const data = req.body
     try {
-        data.user = req.user.uid
         const service = new Service(data)
         await service.save()
 
