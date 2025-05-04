@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5f7df109-6ae1-446d-9207-9bc5934c4653",
+		"_postman_id": "1a5e33c0-3793-434c-a843-392fbcb23468",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37957002"
+		"_exporter_id": "37956970"
 	},
 	"item": [
 		{
@@ -160,12 +160,12 @@
 								},
 								{
 									"key": "services",
-									"value": "",
+									"value": "6817c5dc2917cd71b54abd03",
 									"type": "text"
 								},
 								{
 									"key": "hotel",
-									"value": "",
+									"value": "6817c5dc2917cd71b54abd03",
 									"type": "text"
 								}
 							]
@@ -408,7 +408,7 @@
 								},
 								{
 									"key": "services",
-									"value": "681722674c37cbc27d4b49ef",
+									"value": "6817c5dc2917cd71b54abd03",
 									"type": "text"
 								},
 								{
@@ -1334,6 +1334,236 @@
 								"invoice",
 								"update",
 								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reservation",
+			"item": [
+				{
+					"name": "getReservation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/reservation/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"reservation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReservationbyId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/reservation/sdsds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"reservation",
+								"sdsds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReservation",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/reservation/121212",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"reservation",
+								"121212"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postReservation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer",
+									"value": "6817b323676b03934108fad7",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "NECESITO HOTEL",
+									"type": "text"
+								},
+								{
+									"key": "room",
+									"value": "NECESITO HOTEL",
+									"type": "text"
+								},
+								{
+									"key": "service",
+									"value": "6817c5dc2917cd71b54abd03",
+									"type": "text"
+								},
+								{
+									"key": "starDate",
+									"value": "2025-05-10T14:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-05-15T11:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "typeOfPayment",
+									"value": "CARD",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "ACTIVA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/reservation/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"reservation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putReservation",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer",
+									"value": "6817b323676b03934108fad7",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "NECESITO HOTEL",
+									"type": "text"
+								},
+								{
+									"key": "room",
+									"value": "NECESITO HOTEL",
+									"type": "text"
+								},
+								{
+									"key": "service",
+									"value": "6817c5dc2917cd71b54abd03",
+									"type": "text"
+								},
+								{
+									"key": "starDate",
+									"value": "2025-05-10T14:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-05-15T11:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "typeOfPayment",
+									"value": "CARD",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "ACTIVA",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/reservation/sasa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"reservation",
+								"sasa"
 							]
 						}
 					},
