@@ -13,6 +13,7 @@ import serviceRoutes from '../src/reservation/reservation.routes.js'
 import roomRoutes from '../src/room/room.routes.js'
 import hotelRoutes from '../src/hotel/hotel.routes.js'
 import invoiceRoutes from '../src/invoice/invoice.routes.js'
+import reservationRoutes from '../src/reservation/reservation.routes.js'
 import { limiter } from '../middlewares/rate.limit.js'
 
 const configs = (app)=>{
@@ -34,6 +35,7 @@ const routes = (app)=>{
     app.use('/v1/service', serviceRoutes)
     app.use('/v1/event', eventRoutes)
     app.use('/v1/invoice', invoiceRoutes)
+    app.use('/v1/reservation', reservationRoutes)
 }
 
 export const initServer =()=>{
