@@ -1,4 +1,4 @@
-import Service from './service.model'
+import Service from './service.model.js'
 
 export const getAll = async(req, res)=>{
     const { limit, skip } = req.query
@@ -69,8 +69,7 @@ export const getByID = async(req, res)=>{
 export const save = async(req, res)=>{
     const data = req.body
     try {
-        data.user = req.user.uid
-        const service = new Service(data)
+        let service = new Service(data)
         await service.save()
 
         return res.send(

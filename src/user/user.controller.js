@@ -30,30 +30,6 @@ export const getUser = async(req, res)=>{
     }
 }
 
-export const saveUser = async(req, res)=>{
-    const data  = req.body
-    try {
-        const user = new User(data)
-        
-        await user.save()
-        return res.send(
-            {
-                success: true,
-                message: `User ${user.name} saves succesfully`,
-            }
-        )
-    } catch (error) {
-        console.error(error)
-        return res.status(500).send(
-            {
-                success: false,
-                message: 'General error',
-                error
-
-            }
-        )
-    }
-}
 
 export const update = async(req, res)=>{
     try{
