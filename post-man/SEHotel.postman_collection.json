@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e1e90dc1-ad56-48f6-82a7-b6c8763f4e17",
+		"_postman_id": "6e0ed064-1639-4476-8ec3-e1f4bd460b66",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37957002"
+		"_exporter_id": "37956966"
 	},
 	"item": [
 		{
@@ -57,69 +57,6 @@
 							"port": "3200",
 							"path": [
 								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "RegisterCliente1",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Gabriel",
-									"type": "text"
-								},
-								{
-									"key": "surname",
-									"value": "Pinula",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "1pinula",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "gpinula@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123123Aa!",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "123123123",
-									"type": "text"
-								},
-								{
-									"key": "role ",
-									"value": "ADMIN",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3200/register",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"register"
 							]
 						}
 					},
@@ -314,7 +251,13 @@
 					"name": "gelAllHotels",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3200/v1/hotel/",
 							"protocol": "http",
@@ -335,9 +278,15 @@
 					"name": "gelAllHotelsId",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:3200/v1/hotel/680b2eb2b02a2452416844a4",
+							"raw": "http://localhost:3200/v1/hotel/68182abc0283063b247ce1dd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -346,7 +295,7 @@
 							"path": [
 								"v1",
 								"hotel",
-								"680b2eb2b02a2452416844a4"
+								"68182abc0283063b247ce1dd"
 							]
 						}
 					},
@@ -368,7 +317,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Nose",
+									"value": "Hotel Dubai",
 									"type": "text"
 								},
 								{
@@ -398,17 +347,17 @@
 								},
 								{
 									"key": "services",
-									"value": "6817d3e356fceefe4166a105",
+									"value": "681827a30283063b247ce1d5",
 									"type": "text"
 								},
 								{
 									"key": "imageHotel",
 									"type": "file",
-									"src": "/C:/Users/Usuario/Desktop/img.png"
+									"src": "/C:/Users/Pamal/Downloads/hotel.jpg"
 								},
 								{
 									"key": "amenities",
-									"value": "Nose",
+									"value": "Internet de alta velocidad (Wi-Fi)",
 									"type": "text"
 								}
 							]
@@ -672,7 +621,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"raw": "http://localhost:3200/v1/service/681827a30283063b247ce1d5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -681,7 +630,7 @@
 							"path": [
 								"v1",
 								"service",
-								"6817be5382fbceab09b9f89d"
+								"681827a30283063b247ce1d5"
 							]
 						}
 					},
@@ -698,63 +647,6 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"service",
-								"6817be5382fbceab09b9f89d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateService",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Servicio de limpieza ",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "LIMPIEZA 1",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Limpieza profunda de las habitaciones",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "200",
-									"type": "text"
-								},
-								{
-									"key": "available",
-									"value": "false",
-									"type": "text"
-								}
-							]
-						},
 						"url": {
 							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
 							"protocol": "http",
@@ -856,12 +748,12 @@
 							"urlencoded": [
 								{
 									"key": "userLoggin",
-									"value": "Ppamal",
+									"value": "dgeronimo",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "StrongPas.sword123",
+									"value": "111asdAdl.",
 									"type": "text"
 								}
 							]
@@ -916,11 +808,6 @@
 								{
 									"key": "phone",
 									"value": "12345678",
-									"type": "text"
-								},
-								{
-									"key": "role",
-									"value": "admin",
 									"type": "text"
 								}
 							]
@@ -1001,11 +888,11 @@
 								{
 									"key": "imageRoom",
 									"type": "file",
-									"src": "/C:/Users/Pamal/Downloads/habitacion02.jpg"
+									"src": "/C:/Users/Pamal/Downloads/habitacion.jpg"
 								},
 								{
 									"key": "hotel",
-									"value": "681722e34c37cbc27d4b49f4",
+									"value": "68182abc0283063b247ce1dd",
 									"type": "text"
 								}
 							]
@@ -1251,7 +1138,13 @@
 					"name": "getAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:3200/v1/invoice/getAll",
 							"host": [
@@ -1271,9 +1164,15 @@
 					"name": "getCustomer",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:3200/v1/invoice/getCustomer/",
+							"raw": "localhost:3200/v1/invoice/getCustomer/68182f610283063b247ce1f5",
 							"host": [
 								"localhost"
 							],
@@ -1282,7 +1181,7 @@
 								"v1",
 								"invoice",
 								"getCustomer",
-								""
+								"68182f610283063b247ce1f5"
 							]
 						}
 					},
@@ -1292,9 +1191,15 @@
 					"name": "getAllByID",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "localhost:3200/v1/invoice/getId/",
+							"raw": "localhost:3200/v1/invoice/getId/6818365a2078f6d0bf192c87",
 							"host": [
 								"localhost"
 							],
@@ -1303,7 +1208,7 @@
 								"v1",
 								"invoice",
 								"getId",
-								""
+								"6818365a2078f6d0bf192c87"
 							]
 						}
 					},
@@ -1313,13 +1218,30 @@
 					"name": "updateInvoice",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "NIT",
+									"value": "114283744",
+									"type": "text"
+								},
+								{
+									"key": "typeOfPayment",
+									"value": "CASH",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "localhost:3200/v1/invoice/update/",
+							"raw": "localhost:3200/v1/invoice/update/6818365a2078f6d0bf192c87",
 							"host": [
 								"localhost"
 							],
@@ -1328,7 +1250,7 @@
 								"v1",
 								"invoice",
 								"update",
-								""
+								"6818365a2078f6d0bf192c87"
 							]
 						}
 					},
@@ -1351,8 +1273,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3200/v1/reservation/",
-							"protocol": "http",
+							"raw": "localhost:3200/v1/reservation/",
 							"host": [
 								"localhost"
 							],
@@ -1378,7 +1299,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3200/v1/reservation/sdsds",
+							"raw": "http://localhost:3200/v1/reservation/6818365a2078f6d0bf192c85",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1387,7 +1308,7 @@
 							"path": [
 								"v1",
 								"reservation",
-								"sdsds"
+								"6818365a2078f6d0bf192c85"
 							]
 						}
 					},
@@ -1405,7 +1326,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3200/v1/reservation/121212",
+							"raw": "http://localhost:3200/v1/reservation/6818355027963c73908cea6f",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1414,7 +1335,7 @@
 							"path": [
 								"v1",
 								"reservation",
-								"121212"
+								"6818355027963c73908cea6f"
 							]
 						}
 					},
@@ -1436,22 +1357,22 @@
 							"urlencoded": [
 								{
 									"key": "customer",
-									"value": "6817b323676b03934108fad7",
+									"value": "68182f610283063b247ce1f5",
 									"type": "text"
 								},
 								{
 									"key": "hotel",
-									"value": "NECESITO HOTEL",
+									"value": "68182abc0283063b247ce1dd",
 									"type": "text"
 								},
 								{
 									"key": "room",
-									"value": "NECESITO HOTEL",
+									"value": "68182d100283063b247ce1e9",
 									"type": "text"
 								},
 								{
 									"key": "service",
-									"value": "6817c5dc2917cd71b54abd03",
+									"value": "681827a30283063b247ce1d5",
 									"type": "text"
 								},
 								{
@@ -1462,6 +1383,11 @@
 								{
 									"key": "endDate",
 									"value": "2025-05-15T11:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "NIT",
+									"value": "114283733",
 									"type": "text"
 								},
 								{
@@ -1508,22 +1434,22 @@
 							"urlencoded": [
 								{
 									"key": "customer",
-									"value": "6817b323676b03934108fad7",
+									"value": "68182f610283063b247ce1f5",
 									"type": "text"
 								},
 								{
 									"key": "hotel",
-									"value": "NECESITO HOTEL",
+									"value": "68183803cb0ea4abcc2a9f8e",
 									"type": "text"
 								},
 								{
 									"key": "room",
-									"value": "NECESITO HOTEL",
+									"value": "68182d100283063b247ce1e9",
 									"type": "text"
 								},
 								{
 									"key": "service",
-									"value": "6817c5dc2917cd71b54abd03",
+									"value": "681827a30283063b247ce1d5",
 									"type": "text"
 								},
 								{
@@ -1534,6 +1460,11 @@
 								{
 									"key": "endDate",
 									"value": "2025-05-15T11:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "NIT",
+									"value": "114283733",
 									"type": "text"
 								},
 								{
@@ -1549,7 +1480,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/v1/reservation/sasa",
+							"raw": "http://localhost:3200/v1/reservation/6818365a2078f6d0bf192c85",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1558,7 +1489,7 @@
 							"path": [
 								"v1",
 								"reservation",
-								"sasa"
+								"6818365a2078f6d0bf192c85"
 							]
 						}
 					},

@@ -8,7 +8,7 @@ export const getAll = async(req, res)=>{
         const reservations = await Reservation.find()
             .skip(skip)
             .limit(limit)
-            .populate('user', 'username -_id')
+            .populate('customer', 'username -_id')
             .populate('hotel', 'name -_id')
             .populate('room', 'name -_id')
             .populate('service', 'name -_id')
@@ -45,7 +45,7 @@ export const getByID = async(req, res)=>{
     try {
         let {id} = req.params
         const reservation = await Reservation.findById(id)
-            .populate('user', 'username -_id')
+            .populate('customer', 'username -_id')
             .populate('hotel', 'name -_id')
             .populate('room', 'name -_id')
             .populate('service', 'name -_id')
@@ -80,19 +80,28 @@ export const save = async (req, res) => {
     const data = req.body
   
     try {
-      data.customer = req.user.uid
+      data.customer = req.user._id
   
-      if (!Array.isArray(data.room) || data.room.length === 0) {
+      if (!Array.isArray(data.room)) {
+        if (typeof data.room === 'string' && data.room.trim() !== '') {
+          data.room = [data.room] // convierte string en array
+        } else {
+          return res.status(400).send({ success: false, message: 'At least one room is required' })
+        }
+      }
+  
+      if (data.room.length === 0) {
         return res.status(400).send({ success: false, message: 'At least one room is required' })
       }
-      if (!data.startDate || !data.endDate || !data.typeOfPayment || !data.NIT) {
+  
+      if (!data.starDate || !data.endDate || !data.typeOfPayment || !data.NIT) {
         return res.status(400).send({
           success: false,
           message: 'Start date, end date, NIT and typeOfPayment are required'
         })
       }
   
-      const start = new Date(data.startDate)
+      const start = new Date(data.starDate)
       const end   = new Date(data.endDate)
       const msInDay = 1000 * 60 * 60 * 24
       const daysCount = Math.ceil((end - start) / msInDay)
@@ -119,7 +128,7 @@ export const save = async (req, res) => {
         pricePerNight,
         total,
         typeOfPayment: data.typeOfPayment
-      });
+      })
       await invoice.save()
   
       return res.send({
@@ -136,7 +145,7 @@ export const save = async (req, res) => {
         err
       })
     }
-}
+}  
 
 export const updateR = async(req, res)=>{
     try {

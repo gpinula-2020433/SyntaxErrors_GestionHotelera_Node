@@ -34,6 +34,11 @@ const reservationSchema = Schema(
             type: Date,
             required: [true, 'End Date is required']
         },
+        NIT:{
+            type: String,
+            required: [true, 'NIT is required'],
+            maxLength: [9, `Can't be overcome 9 characters`]
+        },
         typeOfPayment: {
             type: String,
             required: [true, 'Type of payment is required'],
