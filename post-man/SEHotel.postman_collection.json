@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6e0ed064-1639-4476-8ec3-e1f4bd460b66",
+		"_postman_id": "d59ed26e-a9e1-40f7-bded-19185a624e6c",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956966"
+		"_exporter_id": "37956977"
 	},
 	"item": [
 		{
@@ -748,19 +748,18 @@
 							"urlencoded": [
 								{
 									"key": "userLoggin",
-									"value": "dgeronimo",
+									"value": "1pinula",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "111asdAdl.",
+									"value": "123123Aa!",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/login",
-							"protocol": "http",
+							"raw": "localhost:3200/login",
 							"host": [
 								"localhost"
 							],
@@ -782,45 +781,56 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Dylan",
+									"value": "Marcos",
 									"type": "text"
 								},
 								{
 									"key": "surname",
-									"value": "Geronimo",
+									"value": "Pamal",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "Dgeronimo",
+									"value": "1pamal",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "Dgeronimo@gmai.com",
+									"value": "p@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "111asdAdl.",
+									"value": "123123Aa!",
 									"type": "text"
 								},
 								{
 									"key": "phone",
-									"value": "12345678",
+									"value": "123123123",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/register",
-							"protocol": "http",
+							"raw": "localhost:3200/register",
 							"host": [
 								"localhost"
 							],
 							"port": "3200",
 							"path": [
 								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1490,6 +1500,182 @@
 								"v1",
 								"reservation",
 								"6818365a2078f6d0bf192c85"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3200/user/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Luciano",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/user/updateClient/6817a26a4aa01336540a8a80",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"updateClient",
+								"6817a26a4aa01336540a8a80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "123123Aa!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/user/deleteClient/6817a27d4aa01336540a8a85",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"deleteClient",
+								"6817a27d4aa01336540a8a85"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UsersAdmin",
+			"item": [
+				{
+					"name": "updateUser(Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Joel",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/user/updateUser/68183e8423c15388c1fabb0a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"updateUser",
+								"68183e8423c15388c1fabb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser(Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/user/deleteUser/68183e8423c15388c1fabb0a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"deleteUser",
+								"68183e8423c15388c1fabb0a"
 							]
 						}
 					},

@@ -60,15 +60,24 @@ export const changeRole = async(req, res)=>{
 }
 
 
-//UPDATE
+//UPDATE ADMIN
 export const updateUser = async (req, res) => {
     try {
         //Getting the id by the token
-        let { _uid } = req.user
+        let { _id } = req.user
         
         let { id } = req.params
         
         let data = req.body
+
+        //Validating that the user can only update his own profile or another clients
+        let user = await User.findOne({_id: id})
+
+        if((user.role == 'ADMIN') && (_id != id)){ 
+            return res.status(403).send({
+                message: 'You cannot update another admin, you can only update yourself or clients.'
+            })
+        }
         
         let update = checkUpdate(data, id)
         if (!update) return res.status(400).send({ message: 'Data cannot be updated or  data missing' })
@@ -89,6 +98,8 @@ export const updateUser = async (req, res) => {
     }
 }
 
+
+
 //DELETE
 export const deleteUser = async(req, res)=>{
     try {
@@ -96,10 +107,11 @@ export const deleteUser = async(req, res)=>{
         let {id } = req.params
         let {_id} = req.user
         let user = await User.findOne({_id: id})
-        if(user.username == '1dylan') return res.status(403).send({message: 'You cannot delete the default admin'})
-
-         //Validation for the user if try to delete another user that not might his own user
         
+        if(user.username == 'djulian') return res.status(403).send({message: 'You cannot delete the default admin'})
+
+        if((user.role == 'ADMIN') && (_id != id)) return res.status(403).send({message: 'You cannot update another admin, you can only update yourself or clients.'})
+
         let deletedUser = await User.findOneAndDelete(id)
 
         if (!deletedUser) return res.status(404).send({ message: 'User not found' })
