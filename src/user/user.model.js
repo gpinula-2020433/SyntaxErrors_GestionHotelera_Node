@@ -30,16 +30,8 @@ const userSchema = Schema(
             minLength: [8, 'Password must be 8 characters'],
             maxLength: [100, `Can't be overcome 100 characters`],
         },
-
-        phone:{
-            type: String,
-            required:  [true, 'Phone is required'],
-            minLength: [8, `Can't be overcome 16 characters`],
-            maxLength: [15, 'Phone number must be 13 numbers'],
-        },
         role:{
             type: String,
-            required: [true, 'Role is required'],
             uppercase: true,
             enum: ['ADMIN', 'CLIENT']
         }

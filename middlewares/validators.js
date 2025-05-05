@@ -79,9 +79,8 @@ export const registerValidator = [
         .withMessage('Password must be strong')
         .isLength({min: 8})
         .withMessage('Password need min characters'),
-    body('phone', 'Phone cannot be empty')
-        .notEmpty()
-        .isMobilePhone(),
+      body('rol', 'Role cannot be empty')
+        .optional(),
     validateErrors
 ]
 

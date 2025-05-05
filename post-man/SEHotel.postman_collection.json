@@ -803,11 +803,6 @@
 									"key": "password",
 									"value": "123123Aa!",
 									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "123123123",
-									"type": "text"
 								}
 							]
 						},
