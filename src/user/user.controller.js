@@ -7,34 +7,38 @@ export const test = async (req, res) => {
     return res.send('The user route is running')
 }
 
-export const defaultAdmin = async (nameA, surnameA, usernameA, emailA, passwordA, phoneA, roleA) => {
+export const defaultAdmin = async (nameA, surnameA, usernameA, emailA, passwordA, roleA) => {
     try {
         let adminFound = await User.findOne({ role: 'ADMIN' })
-        if (!adminFound) {
-            const data = {
-                name: nameA,
-                surname: surnameA,
-                username: usernameA,
-                email: emailA,
-                password: await encrypt(passwordA),
-                phone: phoneA,
-                role: roleA
-            }
-            let user = new User(data)
-            await user.save()
-            return console.log('A default admin has been created.')
-        } else {
-            return console.log('Default admin cannot be created.')
+        let usernameExists = await User.findOne({ username: usernameA })
+        let emailExists = await User.findOne({ email: emailA })
+
+        if (adminFound) {
+            return console.log('Default admin already exists.')
         }
 
+        if (usernameExists || emailExists) {
+            return console.log('Cannot create default admin: username or email already exists.')
+        }
+
+        const data = {
+            name: nameA,
+            surname: surnameA,
+            username: usernameA,
+            email: emailA,
+            password: await encrypt(passwordA),
+            role: roleA
+        }
+
+        let user = new User(data)
+        await user.save()
+        console.log('A default admin has been created.')
     } catch (err) {
-        console.error(err)
-        
+        console.error('Error creating default admin:', err)
     }
 }
 
 defaultAdmin('Gabriel ', 'Pinula', '1pinula', 'pinula@gmail.com', '123123Aa!', 'ADMIN')
-
 
 export const changeRole = async(req, res)=>{
     try {

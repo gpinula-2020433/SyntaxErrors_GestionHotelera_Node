@@ -44,7 +44,9 @@ export const initServer =()=>{
         routes(app)
         app.listen(process.env.PORT)
         console.log(`Server running in port: ${process.env.PORT}`)
-        //addDefaultAdmin()
+        //Datos del admin por default
+        //defaultAdmin('Gabriel ', 'Pinula', '1pinula', 'pinula@gmail.com', '123123Aa!', 'ADMIN')
+
     }catch(err){
         console.error('Server init failed', err)
     }
