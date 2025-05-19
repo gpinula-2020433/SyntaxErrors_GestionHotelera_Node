@@ -27,6 +27,9 @@ const serviceSchema = Schema(
             type: Boolean,
             default: true
         },
+        imageService : {
+            type: String
+        }
     },
     {
         versionKey: false,

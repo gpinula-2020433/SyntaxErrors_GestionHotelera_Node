@@ -69,6 +69,9 @@ export const getByID = async(req, res)=>{
 export const save = async(req, res)=>{
     const data = req.body
     try {
+        if(req.file?.filename){
+            data.imageService = req.file.filename
+        }
         const service = new Service(data)
         await service.save()
 
@@ -117,6 +120,47 @@ export const updateService = async(req, res)=>{
             }
         )
     } catch (err) {
+        console.error('General error', err)
+        return res.status(500).send(
+            {
+                success: false,
+                message: 'General error',
+                err
+            }
+        )
+    }
+}
+
+export const updateServiceImage = async(req, res)=>{
+    try{
+        const {id} = req.params
+        const {filename} = req.file
+        const service = await Service.findByIdAndUpdate(
+            id,
+            {
+                imageService: filename
+            },
+            {
+                new: true
+            }
+        )
+
+        if(!service)
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Service not found - not updated'
+                }
+            )
+        
+        return res.send(
+            {
+                success: true,
+                message: 'Service updated successfully',
+                service
+            }
+        )
+    }catch(err){
         console.error('General error', err)
         return res.status(500).send(
             {

@@ -251,3 +251,22 @@ export const validateUpdateInvoice = [
       await isNITUnique(value, customerId, invoiceId)
     }),
 ]
+
+export const validateRegisterService = [
+  body('name', 'Name is required')
+    .notEmpty()
+    .isLength({ max: 40 }).withMessage('Name cannot exceed 40 characters'),
+  body('type', 'Type is required')
+    .notEmpty()
+    .isIn(['COMIDA', 'LIMPIEZA', 'PISCINA', 'EXTRA']).withMessage('Type must be one of COMIDA, LIMPIEZA, PISCINA, EXTRA'),
+  body('description', 'Description is required')
+    .notEmpty()
+    .isLength({ max: 100 }).withMessage('Description cannot exceed 100 characters'),
+  body('price', 'Price is required')
+    .notEmpty()
+    .isFloat({ min: 0 }).withMessage('Price must be a positive number'),
+  body('available', 'Available must be a boolean')
+    .optional()
+    .isBoolean(),
+  validateErrors
+]
