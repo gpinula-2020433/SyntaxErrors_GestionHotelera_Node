@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d59ed26e-a9e1-40f7-bded-19185a624e6c",
+		"_postman_id": "e31e5ee0-35cc-44ed-8dc0-5aa0ba9dc262",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956977"
+		"_exporter_id": "37957002"
 	},
 	"item": [
 		{
@@ -65,10 +65,23 @@
 			]
 		},
 		{
-			"name": "Event",
+			"name": "auth",
 			"item": [
 				{
-					"name": "PostEvent",
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\", data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -76,142 +89,303 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "title",
-									"value": "Conferencia de Tecnología",
+									"key": "userLoggin",
+									"value": "1pinula",
 									"type": "text"
 								},
 								{
-									"key": "description",
-									"value": "Evento sobre las nuevas tecnologías del 2025",
-									"type": "text"
-								},
-								{
-									"key": "date",
-									"value": "2025-06-15T14:00:00.000Z",
-									"type": "text"
-								},
-								{
-									"key": "location",
-									"value": "Hotel Intercontinental, Ciudad de Guatemala",
-									"type": "text"
-								},
-								{
-									"key": "services",
-									"value": "6817c5dc2917cd71b54abd03",
-									"type": "text"
-								},
-								{
-									"key": "hotel",
-									"value": "6817c5dc2917cd71b54abd03",
+									"key": "password",
+									"value": "123123Aa!",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/v1/event/",
-							"protocol": "http",
+							"raw": "localhost:3200/login",
 							"host": [
 								"localhost"
 							],
 							"port": "3200",
 							"path": [
-								"v1",
-								"event",
-								""
+								"login"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GetEvent",
+					"name": "register",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3200/v1/event/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"event",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetEventById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3200/v1/event/3232321",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"event",
-								"3232321"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteEvent",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3200/v1/event/3232321",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"event",
-								"3232321"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PutEvent",
-					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Boda en la Playa",
+									"value": "Marcos",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Pamal",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "1pamal",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "p@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123123Aa!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3200/user/getAll",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"user",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Luciano",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/user/updateClient/6817a26a4aa01336540a8a80",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"updateClient",
+								"6817a26a4aa01336540a8a80"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "123123Aa!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3200/v1/user/deleteClient/6817a27d4aa01336540a8a85",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"deleteClient",
+								"6817a27d4aa01336540a8a85"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UsersAdmin",
+			"item": [
+				{
+					"name": "updateUser(Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Joel",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/user/updateUser/68183e8423c15388c1fabb0a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"updateUser",
+								"68183e8423c15388c1fabb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser(Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/user/deleteUser/68183e8423c15388c1fabb0a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"user",
+								"deleteUser",
+								"68183e8423c15388c1fabb0a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service",
+			"item": [
+				{
+					"name": "addService",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Servicio de limpieza profunda",
 									"type": "text"
 								},
 								{
 									"key": "type",
-									"value": "BODA",
+									"value": "LIMPIEZA",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Una hermosa boda con vista al mar",
+									"value": "Limpieza profunda de las habitaciones y áreas comunes del hotel",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "2019",
+									"value": "150",
 									"type": "text"
 								},
 								{
@@ -220,14 +394,14 @@
 									"type": "text"
 								},
 								{
-									"key": "services",
-									"value": "",
-									"type": "text"
+									"key": "imageService",
+									"type": "file",
+									"src": "/C:/Users/Usuario/Desktop/img.png"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/v1/event/",
+							"raw": "http://localhost:3200/v1/service/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,8 +409,184 @@
 							"port": "3200",
 							"path": [
 								"v1",
-								"event",
+								"service",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllService",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/681827a30283063b247ce1d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"681827a30283063b247ce1d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteService",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateService",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Servicio de limpieza ",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "LIMPIEZA 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Limpieza profunda de las habitaciones",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"6817be5382fbceab09b9f89d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateServiceImage",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageService",
+									"type": "file",
+									"src": "/C:/Users/Usuario/Desktop/img.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/service/updateServiceImage/682ad1b46713a2ae448fa1c3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"service",
+								"updateServiceImage",
+								"682ad1b46713a2ae448fa1c3"
 							]
 						}
 					},
@@ -523,51 +873,169 @@
 			]
 		},
 		{
-			"name": "Service",
+			"name": "Event",
 			"item": [
 				{
-					"name": "addService",
+					"name": "PostEvent",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Conferencia de Tecnología",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Evento sobre las nuevas tecnologías del 2025",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2025-06-15T14:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Hotel Intercontinental, Ciudad de Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "6817c5dc2917cd71b54abd03",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "6817c5dc2917cd71b54abd03",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEvent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetEventById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3200/v1/event/3232321",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"event",
+								"3232321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutEvent",
+					"request": {
+						"method": "PUT",
+						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Servicio de limpieza profunda",
+									"value": "Boda en la Playa",
 									"type": "text"
 								},
 								{
 									"key": "type",
-									"value": "LIMPIEZA",
+									"value": "BODA",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Limpieza profunda de las habitaciones y áreas comunes del hotel",
+									"value": "Una hermosa boda con vista al mar",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "150",
+									"value": "2019",
 									"type": "text"
 								},
 								{
 									"key": "available",
 									"value": "true",
 									"type": "text"
+								},
+								{
+									"key": "services",
+									"value": "",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/v1/service/",
+							"raw": "http://localhost:3200/v1/event/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -575,257 +1043,8 @@
 							"port": "3200",
 							"path": [
 								"v1",
-								"service",
+								"event",
 								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getAllService",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3200/v1/service/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"service",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getById",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3200/v1/service/681827a30283063b247ce1d5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"service",
-								"681827a30283063b247ce1d5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteService",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"service",
-								"6817be5382fbceab09b9f89d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateService",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Servicio de limpieza ",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "LIMPIEZA 1",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Limpieza profunda de las habitaciones",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "200",
-									"type": "text"
-								},
-								{
-									"key": "available",
-									"value": "false",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3200/v1/service/6817be5382fbceab09b9f89d",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"service",
-								"6817be5382fbceab09b9f89d"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "auth",
-			"item": [
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var data = JSON.parse(responseBody);\r",
-									"postman.setGlobalVariable(\"token\", data.token)"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "userLoggin",
-									"value": "1pinula",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123123Aa!",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3200/login",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Marcos",
-									"type": "text"
-								},
-								{
-									"key": "surname",
-									"value": "Pamal",
-									"type": "text"
-								},
-								{
-									"key": "username",
-									"value": "1pamal",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "p@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123123Aa!",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3200/register",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"register"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "surname",
-									"value": null,
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -1495,182 +1714,6 @@
 								"v1",
 								"reservation",
 								"6818365a2078f6d0bf192c85"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Users",
-			"item": [
-				{
-					"name": "getUser",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "localhost:3200/user/getAll",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"user",
-								"getAll"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateUser",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Luciano",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3200/v1/user/updateClient/6817a26a4aa01336540a8a80",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"user",
-								"updateClient",
-								"6817a26a4aa01336540a8a80"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteUser",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "password",
-									"value": "123123Aa!",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "localhost:3200/v1/user/deleteClient/6817a27d4aa01336540a8a85",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"user",
-								"deleteClient",
-								"6817a27d4aa01336540a8a85"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "UsersAdmin",
-			"item": [
-				{
-					"name": "updateUser(Admin)",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Joel",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3200/v1/user/updateUser/68183e8423c15388c1fabb0a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"user",
-								"updateUser",
-								"68183e8423c15388c1fabb0a"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteUser(Admin)",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:3200/v1/user/deleteUser/68183e8423c15388c1fabb0a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3200",
-							"path": [
-								"v1",
-								"user",
-								"deleteUser",
-								"68183e8423c15388c1fabb0a"
 							]
 						}
 					},
