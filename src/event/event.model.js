@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
 
 const eventSchema = new Schema(
   {
@@ -24,13 +24,16 @@ const eventSchema = new Schema(
       type: Boolean,
       default: true
     },
-    services: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Service',
-        required: true
-      }
-    ],
+    services: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Service',
+          required: [true, 'Service is required']
+        }
+      ],
+      validate: [(val) => val.length > 0, 'At least one service must be selected']
+    },
     hotel: {
       type: Schema.Types.ObjectId,
       ref: 'Hotel',
@@ -39,8 +42,8 @@ const eventSchema = new Schema(
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true 
   }
 )
 
-export default model('Event', eventSchema);
+export default model('Event', eventSchema)

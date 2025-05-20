@@ -1,8 +1,8 @@
-import { Router } from 'express'
+import { Router } from 'express';
 import {
   getAllEvents,
-  getEventByID,
-  createEvent,
+  getEventById,
+  addEvent,
   updateEvent,
   deleteEvent,
 } from './event.controller.js'
@@ -10,8 +10,8 @@ import {
 const api = Router()
 
 api.get('/', getAllEvents)
-api.get('/:id', getEventByID)
-api.post('/', createEvent)
+api.get('/:id', getEventById)
+api.post('/', addEvent)
 api.put('/:id', updateEvent)
 api.delete('/:id', deleteEvent)
 
