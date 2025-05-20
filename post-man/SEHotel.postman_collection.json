@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c2a85d56-45fc-4375-a6c0-48bf5b4eb0e2",
+		"_postman_id": "2662d77d-cc9c-498a-afaf-391e1d4fc8aa",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956970"
+		"_exporter_id": "37957002"
 	},
 	"item": [
 		{
@@ -697,7 +697,7 @@
 								},
 								{
 									"key": "services",
-									"value": "6817c5dc2917cd71b54abd03",
+									"value": "682c24c7e8442ac59561504e",
 									"type": "text"
 								},
 								{
@@ -740,7 +740,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3200/v1/hotel/6815f7e2af6a0dd5c90d6563",
+							"raw": "http://localhost:3200/v1/hotel/682c24d2e8442ac595615052",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -749,7 +749,7 @@
 							"path": [
 								"v1",
 								"hotel",
-								"6815f7e2af6a0dd5c90d6563"
+								"682c24d2e8442ac595615052"
 							]
 						}
 					},
@@ -869,6 +869,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getHotelDetailsById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3200/v1/hotel/hoteldetails/682c24f4e8442ac59561505a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3200",
+							"path": [
+								"v1",
+								"hotel",
+								"hoteldetails",
+								"682c24f4e8442ac59561505a"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -910,12 +938,12 @@
 								},
 								{
 									"key": "services",
-									"value": "6817c5dc2917cd71b54abd03",
+									"value": "682c24c7e8442ac59561504e",
 									"type": "text"
 								},
 								{
 									"key": "hotel",
-									"value": "682bf5ecfee34e2e8c501961",
+									"value": "682c24f4e8442ac59561505a",
 									"type": "text"
 								}
 							]
@@ -1126,7 +1154,7 @@
 								},
 								{
 									"key": "hotel",
-									"value": "68182abc0283063b247ce1dd",
+									"value": "682c24f4e8442ac59561505a",
 									"type": "text"
 								}
 							]

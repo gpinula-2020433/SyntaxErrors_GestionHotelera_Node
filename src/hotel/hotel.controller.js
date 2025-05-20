@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-
-import Hotel from "./hotel.model.js"
+import Room from '../room/room.model.js'
+import Event from '../event/event.model.js'
+import Hotel from './hotel.model.js'
 
 export const getAllHotels = async (req, res)=> {
     try{
@@ -228,4 +229,40 @@ export const updateHotelImage = async (req, res) => {
             err
         });
     }
+};
+
+export const getHotelDetails = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const hotel = await Hotel.findById(id).populate("services");
+
+    if (!hotel) {
+      return res.status(404).send({
+        success: false,
+        message: "Hotel not found"
+      });
+    }
+
+    const rooms = await Room.find({ hotel: id });
+    const events = await Event.find({ hotel: id });
+    const services = hotel.services;
+
+    return res.send({
+      success: true,
+      message: "Hotel data retrieved successfully",
+      data: {
+        rooms,
+        events,
+        services
+      }
+    });
+  } catch (err) {
+    console.error("General error", err);
+    return res.status(500).send({
+      success: false,
+      message: "General error",
+      err
+    });
+  }
 };
