@@ -16,7 +16,7 @@ export const checkPassword = async(hash, password)=>{
         return await verify(hash, password)
     } catch (err) {
         console.error(err)
-        return err
+        return false
     }
 }
 

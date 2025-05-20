@@ -84,6 +84,14 @@ export const registerValidator = [
     validateErrors
 ]
 
+export const passwordVerify = [
+  body ('newPassword')
+  .isStrongPassword()
+  .withMessage('Password must be strong')
+  .isLength({min: 8})
+  .withMessage('Password need min characters'),
+]
+
 export const hotelValidator = [
     body('name', 'Hotel name cannot be empty')
         .notEmpty()

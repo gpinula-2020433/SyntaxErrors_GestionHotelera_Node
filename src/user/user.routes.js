@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { changeRole, deleteClient, deleteUser, test, updateClient, updateUser } from "./user.controller.js";
+import { changeRole, deleteClient, deleteUser, test, updateClient, updatePassword, updateUser } from "./user.controller.js";
 import { validateJwt, isAdmin, isClient } from "../../middlewares/validate.jwt.js";
+import { passwordVerify } from "../../middlewares/validators.js";
 
 const api = Router()
 
@@ -14,4 +15,5 @@ api.put('/changeRole/:id',[validateJwt,isAdmin], changeRole)
 //Client
 api.put('/updateClient/:id', [validateJwt, isClient], updateClient)
 api.delete('/deleteClient/:id', [validateJwt, isClient], deleteClient)
+api.put('/updatePassword/:id', [validateJwt, isClient, passwordVerify], updatePassword)
 export default api

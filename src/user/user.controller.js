@@ -127,6 +127,8 @@ export const deleteUser = async(req, res)=>{
     }
 }
 
+
+//CLIENT
 export const updateClient = async(req,res) =>{
     try {
         let {_id} = req.user
@@ -159,6 +161,34 @@ export const updateClient = async(req,res) =>{
     } catch (err) {
         console.error(err)
         return res.status(500).send({message: 'Error updating the user'})
+    }
+}
+
+export const updatePassword = async(req, res)=>{
+    try {
+        let {_id} = req.user
+        const { currentPassword, newPassword} = req.body
+
+        if(!currentPassword || ! newPassword)
+            return res.status(400).send({message: 'Missing curretn or new password'})
+
+        const user = await User.findById(_id)
+        if(!user) return res.status(400).send({message: 'User not found'})
+
+        const validPassword = await checkPassword(user.password, currentPassword)
+        if(!validPassword) return res.status(400).send({message: 'Incorrect password'})
+
+        if(newPassword.length < 8 || newPassword.length > 100){
+            return res.status(400).send({message: 'Password must be have min 8 characters and max 100 characters'})
+        }
+
+        user.password = await encrypt(newPassword)
+        await user.save()
+
+        return res.status(200).send({message: 'Password update successfully!'})
+    } catch (error) {
+        console.error(err)
+        return res.status(500).send({message: 'Error updating the password'})
     }
 }
 
