@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "e31e5ee0-35cc-44ed-8dc0-5aa0ba9dc262",
+		"_postman_id": "c2a85d56-45fc-4375-a6c0-48bf5b4eb0e2",
 		"name": "SEHotel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37957002"
+		"_exporter_id": "37956970"
 	},
 	"item": [
 		{
@@ -697,7 +697,7 @@
 								},
 								{
 									"key": "services",
-									"value": "681827a30283063b247ce1d5",
+									"value": "6817c5dc2917cd71b54abd03",
 									"type": "text"
 								},
 								{
@@ -895,12 +895,17 @@
 								},
 								{
 									"key": "date",
-									"value": "2025-06-15T14:00:00.000Z",
+									"value": "2023-12-15T10:00:00Z",
 									"type": "text"
 								},
 								{
 									"key": "location",
 									"value": "Hotel Intercontinental, Ciudad de Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "available",
+									"value": "true",
 									"type": "text"
 								},
 								{
@@ -910,7 +915,7 @@
 								},
 								{
 									"key": "hotel",
-									"value": "6817c5dc2917cd71b54abd03",
+									"value": "682bf5ecfee34e2e8c501961",
 									"type": "text"
 								}
 							]
@@ -958,7 +963,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3200/v1/event/3232321",
+							"raw": "http://localhost:3200/v1/event/682bfa830759a0ec851ffb5e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -967,7 +972,7 @@
 							"path": [
 								"v1",
 								"event",
-								"3232321"
+								"682bfa830759a0ec851ffb5e"
 							]
 						}
 					},
@@ -979,7 +984,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3200/v1/event/3232321",
+							"raw": "http://localhost:3200/v1/event/682bfa830759a0ec851ffb5e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -988,7 +993,7 @@
 							"path": [
 								"v1",
 								"event",
-								"3232321"
+								"682bfa830759a0ec851ffb5e"
 							]
 						}
 					},
@@ -1003,39 +1008,44 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "name",
-									"value": "Boda en la Playa",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "BODA",
+									"key": "title",
+									"value": "Conferencia de Tecnología",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Una hermosa boda con vista al mar",
+									"value": "Evento sobre las nuevas tecnologías del 2025",
 									"type": "text"
 								},
 								{
-									"key": "price",
-									"value": "2019",
+									"key": "date",
+									"value": "2023-12-15T10:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "location",
+									"value": "Hotel Intercontinental, Ciudad de Guatemala",
 									"type": "text"
 								},
 								{
 									"key": "available",
-									"value": "true",
+									"value": "false",
 									"type": "text"
 								},
 								{
 									"key": "services",
-									"value": "",
+									"value": "6817c5dc2917cd71b54abd03",
+									"type": "text"
+								},
+								{
+									"key": "hotel",
+									"value": "682bf5ecfee34e2e8c501961",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3200/v1/event/",
+							"raw": "http://localhost:3200/v1/event/682bfa640759a0ec851ffb57",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1044,7 +1054,7 @@
 							"path": [
 								"v1",
 								"event",
-								""
+								"682bfa640759a0ec851ffb57"
 							]
 						}
 					},
