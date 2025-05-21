@@ -64,6 +64,28 @@ export const changeRole = async(req, res)=>{
 }
 
 
+//GET USER BY ID
+export const getUserById = async(req, res)=>{
+    try {
+        const { id } = req.params
+        const user = await User.findById(id)
+        if(!user){
+            return res.status(404).send({
+                success: false,
+                message: 'User not found'
+            })
+        }
+        return res.send({
+            success: true,
+            message: 'User found',
+            user
+        })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send({message: 'Error updating the user'})
+    }
+}
+
 //UPDATE ADMIN
 export const updateUser = async (req, res) => {
     try {

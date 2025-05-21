@@ -37,8 +37,10 @@ export const login = async(req,res)=>{
         if(user && await checkPassword(user.password, password)){
             let loggedUser = {
                 uid: user._id,
-                username: user.username,
                 name: user.name,
+                surname: user.surname,
+                email: user.email,
+                username: user.username,
                 role: user.role
             }
             let token = await generateJwt(loggedUser)

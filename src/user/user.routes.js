@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { changeRole, deleteClient, deleteUser, test, updateClient, updatePassword, updateUser } from "./user.controller.js";
+import { changeRole, deleteClient, deleteUser, getUserById, test, updateClient, updatePassword, updateUser } from "./user.controller.js";
 import { validateJwt, isAdmin, isClient } from "../../middlewares/validate.jwt.js";
 import { passwordVerify } from "../../middlewares/validators.js";
 
 const api = Router()
 
 api.get('/test', test)
+api.get('/:id', getUserById)
 
 //Admin
 api.put('/updateUser/:id', [validateJwt,isAdmin], updateUser)

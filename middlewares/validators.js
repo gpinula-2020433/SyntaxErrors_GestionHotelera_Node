@@ -90,6 +90,7 @@ export const passwordVerify = [
   .withMessage('Password must be strong')
   .isLength({min: 8})
   .withMessage('Password need min characters'),
+  validateErrors
 ]
 
 export const hotelValidator = [

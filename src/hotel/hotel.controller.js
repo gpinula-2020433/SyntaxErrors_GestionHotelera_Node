@@ -252,6 +252,7 @@ export const getHotelDetails = async (req, res) => {
       success: true,
       message: "Hotel data retrieved successfully",
       data: {
+        hotel,
         rooms,
         events,
         services
