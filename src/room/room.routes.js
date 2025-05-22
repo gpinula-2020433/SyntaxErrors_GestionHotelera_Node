@@ -13,10 +13,32 @@ import { deleteFileOnError } from "../../middlewares/delete.file.on.errors.js";
 
 const api = Router()
 
-api.post('/add', [validateCreateRoom, validateJwt, isAdmin, uploadProfilePicture.single("imageRoom"), deleteFileOnError] ,addRoom)
+api.post(
+    '/add',
+    [
+      validateJwt,
+      isAdmin,
+      uploadProfilePicture.single("imageRoom"),
+      validateCreateRoom,
+      deleteFileOnError
+    ],
+    addRoom
+  )
+
 api.get('/getAll', [validateJwt], getAllRooms)
 api.get('/get/:type', [validateJwt], getRoomsByType)
-api.put('/update/:id', [validateJwt, isAdmin, validateUpdateRoom, uploadProfilePicture.single("imageRoom"), deleteFileOnError] ,updateRoom)
+
+api.put(
+    '/update/:id',
+    [
+      validateJwt,
+      isAdmin,
+      uploadProfilePicture.single("imageRoom"),
+      validateUpdateRoom,
+      deleteFileOnError
+    ],
+    updateRoom
+  )
 api.delete('/delete/:id', [validateJwt, isAdmin], deleteRoom)
 
 

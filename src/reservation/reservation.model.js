@@ -49,6 +49,7 @@ const reservationSchema = Schema(
             type: String,
             enum: ['ACTIVA', 'CANCELADA', 'FINALIZADA'],
             uppercase: true,
+            default: 'ACTIVA',
             required: [true, 'Status is required']
         }
     },

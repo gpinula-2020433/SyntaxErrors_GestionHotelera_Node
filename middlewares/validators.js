@@ -149,8 +149,8 @@ export const validateUpdateHotel = [
 // Validar creación de habitación
 export const validateCreateRoom = [
   body('name', 'Name is required')
-  .notEmpty()
-  .isLength({ min: 3, max: 50 }).withMessage('Name must be between 3 and 50 characters'),
+    .notEmpty()
+    .isLength({ min: 3, max: 50 }).withMessage('Name must be between 3 and 50 characters'),
   body('roomNumber', 'Room number is required')
     .notEmpty()
     .custom(async (value, { req }) => {
@@ -158,7 +158,8 @@ export const validateCreateRoom = [
     }),
   body('type', 'Type is required and must be valid')
     .notEmpty()
-    .isIn(['INDIVIDUAL', 'DOUBLE', 'SUITE']),
+    .isIn(['INDIVIDUAL', 'DOUBLE', 'SUITE'])
+    .withMessage('Type must be one of: INDIVIDUAL, DOUBLE, SUITE'),
   body('roomDescription', 'Room description is required')
     .notEmpty()
     .isLength({ min: 10, max: 500 }).withMessage('Room description must be between 10 and 500 characters'),
@@ -170,7 +171,8 @@ export const validateCreateRoom = [
     .isFloat({ min: 0 }),
   body('status', 'Status is required and must be valid')
     .notEmpty()
-    .isIn(['AVAILABLE', 'BUSY', 'MAINTENANCE']),
+    .isIn(['AVAILABLE', 'BUSY', 'MAINTENANCE'])
+    .withMessage('Status must be one of: AVAILABLE, BUSY, MAINTENANCE'),
   body('availabilityDates', 'Availability dates must be an array of valid dates')
     .optional()
     .isArray()
@@ -186,33 +188,37 @@ export const validateCreateRoom = [
       await objectIdValid(value)
       await existHotel(value)
     }),
+
+  validateErrors
 ]
 
 // Validar actualización de habitación
 export const validateUpdateRoom = [
   body('name', 'Name is required')
-    .notEmpty()
+    .optional()
     .isLength({ min: 3, max: 50 }),
   body('roomNumber', 'Room number is required')
-    .notEmpty()
+    .optional()
     .custom(async (value, { req }) => {
       await isRoomNumber(value, req.body.hotel, req.params.id)
     }),
-  body('type', 'Type is required and must be valid')
-    .notEmpty()
-    .isIn(['INDIVIDUAL', 'DOUBLE', 'SUITE']),
+  body('type', 'Type must be valid')
+    .optional()
+    .isIn(['INDIVIDUAL', 'DOUBLE', 'SUITE'])
+    .withMessage('Type must be one of: INDIVIDUAL, DOUBLE, SUITE'),
   body('roomDescription', 'Room description is required')
-    .notEmpty()
+    .optional()
     .isLength({ min: 10, max: 500 }),
   body('capacity', 'Capacity must be a positive integer')
-    .notEmpty()
+    .optional()
     .isInt({ min: 1 }),
   body('pricePerNight', 'Price per night must be a positive number')
-    .notEmpty()
+    .optional()
     .isFloat({ min: 0 }),
   body('status', 'Status must be valid')
-    .notEmpty()
-    .isIn(['AVAILABLE', 'BUSY', 'MAINTENANCE']),
+    .optional()
+    .isIn(['AVAILABLE', 'BUSY', 'MAINTENANCE'])
+    .withMessage('Status must be one of: AVAILABLE, BUSY, MAINTENANCE'),
   body('availabilityDates', 'Availability dates must be an array of valid dates')
     .optional()
     .isArray()
@@ -223,11 +229,12 @@ export const validateUpdateRoom = [
       return true
     }),
   body('hotel', 'Hotel is required')
-    .notEmpty()
+    .optional()
     .custom(async (value) => {
       await objectIdValid(value)
       await existHotel(value)
     }),
+  validateErrors
 ]
 
 // Validar actualización de factura

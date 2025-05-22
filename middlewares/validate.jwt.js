@@ -16,10 +16,7 @@ export const validateJwt = async(req, res, next)=>{
                 message: 'User not found - Unauthorized'
             }
         )
-        req.user = {
-            _id: user.uid,
-            role: user.role
-        }
+        req.user = user
         next()
     } catch (err) {
         console.error(err)
@@ -50,11 +47,12 @@ export const isAdmin = async(req, res, next)=>{
 
 export const isClient = async(req, res, next)=>{
     try {
-        let { role, username } = req.user
+        let { role, name } = req.user
+        console.log(role, name)
         if(!role || role !== 'CLIENT') return res.status(403).send(
             {
                 succes: false,
-                message: `You dont have access | username ${username}`
+                message: `You dont have access | username ${name}`
             }
         )
         next()
