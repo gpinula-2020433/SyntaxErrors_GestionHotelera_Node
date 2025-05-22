@@ -10,6 +10,7 @@ export const getAllHotels = async (req, res)=> {
         const hotel = await Hotel.find()
             .skip(skip)
             .limit(limit)
+            .populate('services', "name type description price")
         if(hotel.length === 0)
             return res.status(404).send(
             {

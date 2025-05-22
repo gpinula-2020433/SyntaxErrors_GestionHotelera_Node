@@ -100,7 +100,15 @@ export const save = async (req, res) => {
           message: 'Start date, end date, NIT and typeOfPayment are required'
         })
       }
-  
+      
+    const nitRegex = /^\d{7}-[\dK]$/
+        if (!nitRegex.test(data.NIT)) {
+            return res.status(400).send({
+            success: false,
+            message: 'NIT format is invalid. Expected format: 7 digits, hyphen, digit or K (Ej., 1234567-8 or 5489381-K)'
+            })
+        }
+
       const start = new Date(data.starDate)
       const end   = new Date(data.endDate)
       const msInDay = 1000 * 60 * 60 * 24
