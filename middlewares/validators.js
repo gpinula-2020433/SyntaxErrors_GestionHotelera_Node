@@ -65,10 +65,12 @@ export const registerValidator = [
     body('username', 'Username cannot be empty')
         .notEmpty()
         .toLowerCase(),
-    body('email', 'Email cannot be empty')
-        .notEmpty()
-        .isEmail()
-        .custom(existEmail),
+    body('email')
+      .notEmpty()
+      .withMessage('El correo no puede estar vacío')
+      .isEmail()
+      .withMessage('El correo electrónico no es válido')
+      .custom(existEmail),
     body('username')
         .notEmpty()
         .toLowerCase()
@@ -76,7 +78,7 @@ export const registerValidator = [
     body('password', 'Password cannot be empty')
         .notEmpty()
         .isStrongPassword()
-        .withMessage('Password must be strong')
+        .withMessage('La contraseña debe ser más fuerte, debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos.')
         .isLength({min: 8})
         .withMessage('Password need min characters'),
       body('rol', 'Role cannot be empty')
