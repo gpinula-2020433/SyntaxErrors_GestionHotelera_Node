@@ -1,0 +1,40 @@
+{
+  "name": "bim2_gestionhotelera_syntaxerrors",
+  "version": "1.0.0",
+  "description": "Gestión Hotelera, Proyecto Bim2. Grupo: Syntax Errors, 2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpinula-2020433/Bim2_GestionHotelera_SyntaxErrors.git"
+  },
+  "keywords": [
+    "Hotel",
+    "sistema"
+  ],
+  "author": "Syntax Errors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gpinula-2020433/Bim2_GestionHotelera_SyntaxErrors/issues"
+  },
+  "homepage": "https://github.com/gpinula-2020433/Bim2_GestionHotelera_SyntaxErrors#readme",
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "bim2_gestionhotelera_syntaxerrors": "file:",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.2",
+    "path": "^0.12.7"
+  },
+  "type": "module"
+}
