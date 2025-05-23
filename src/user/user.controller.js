@@ -153,17 +153,17 @@ export const deleteUser = async(req, res)=>{
 //CLIENT
 export const updateClient = async(req,res) =>{
     try {
-        let {_id} = req.user
+        let {uid} = req.user
         
         let {id} = req.params
 
         let data = req.body
 
-        console.log('From token (_id):', _id)
+        console.log('From token (_id):', uid)
         console.log('From params (id):', id)
 
         
-        if(String(_id) !== String(id)) return res.status(401).send({message: 'You only can update your account.'})        
+        if(String(uid) !== String(id)) return res.status(401).send({message: 'You only can update your account.'})        
 
         let update = checkUpdate(data, id)
 
@@ -188,13 +188,13 @@ export const updateClient = async(req,res) =>{
 
 export const updatePassword = async(req, res)=>{
     try {
-        let {_id} = req.user
+        let {uid} = req.user
         const { currentPassword, newPassword} = req.body
 
         if(!currentPassword || ! newPassword)
             return res.status(400).send({message: 'Missing curretn or new password'})
 
-        const user = await User.findById(_id)
+        const user = await User.findById(uid)
         if(!user) return res.status(400).send({message: 'User not found'})
 
         const validPassword = await checkPassword(user.password, currentPassword)
@@ -216,7 +216,7 @@ export const updatePassword = async(req, res)=>{
 
 export const deleteClient = async(req,res)=>{
     try {
-        let {_id} = req.user
+        let {uid} = req.user
         
         let { id} = req.params
         
@@ -225,12 +225,12 @@ export const deleteClient = async(req,res)=>{
         let user = await User.findOne({_id:id})
         if(user.role == 'ADMIN') return res.status(401).send({message: 'You cannot delete an admin.'})
         
-        if(_id != id) return res.status(401).send({message: 'You only can delete your account.'}) 
+        if(uid != id) return res.status(401).send({message: 'You only can delete your account.'}) 
 
-        let check = await checkPassword(password, user.password)
+        let check = await checkPassword(user.password, password)
         if(!check) return res.status(401).send({message: 'Invalid password'})
         
-        let deletedU = await User.findOneAndDelete(id)
+        let deletedU = await User.findByIdAndDelete(id)
 
         if (!deletedU) return res.status(404).send({ message: 'User not found' })
         
@@ -240,4 +240,3 @@ export const deleteClient = async(req,res)=>{
         return res.status(500).send({message: 'Error deleting account'})
     }
 }
-
