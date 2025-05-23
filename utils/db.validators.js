@@ -33,8 +33,8 @@ export const existService = async (serviceId) => {
 export const existUsername = async (username, user) => {
   const alreadyUsername = await User.findOne({ username })
   if (alreadyUsername && alreadyUsername._id != user.uid) {
-    console.error(`Username ${username} is already taken`)
-    throw new Error(`Username ${username} is already taken`)
+    console.error(`Username ${username} ya existe`)
+    throw new Error(`Username ${username} ya existe`)
   }
 }
 
@@ -42,8 +42,8 @@ export const existUsername = async (username, user) => {
 export const existEmail = async (email, user) => {
   const alreadyEmail = await User.findOne({ email })
   if (alreadyEmail && alreadyEmail._id != user.uid) {
-    console.error(`Email ${email} is already taken`)
-    throw new Error(`Email ${email} is already taken`)
+    console.error(`Email ${email} ya existe`)
+    throw new Error(`Email ${email} ya existe`)
   }
 }
 
