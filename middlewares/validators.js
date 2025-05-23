@@ -119,7 +119,8 @@ export const hotelValidator = [
     body('services', 'service cannot be empty')
         .notEmpty()
         .custom(validateServices),
-    validateErrors
+    validateErrors,
+    
 ]
 
 export const validateUpdateHotel = [
