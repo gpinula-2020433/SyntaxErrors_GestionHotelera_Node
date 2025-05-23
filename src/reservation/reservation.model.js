@@ -22,10 +22,6 @@ const reservationSchema = Schema(
             ],
             validate: [(val) => val.length > 0, 'At least one room must be selected']
           },
-        service: {
-            type: Schema.Types.ObjectId,
-            ref: 'Service',
-        },
         starDate: {
             type: Date,
             required: [true, 'Start Date is required']
