@@ -80,7 +80,7 @@ export const save = async (req, res) => {
 const data = req.body
 
     try {
-        data.customer = req.user._id
+        data.customer = req.user.uid
 
         if (!Array.isArray(data.room)) {
         if (typeof data.room === 'string' && data.room.trim() !== '') {
