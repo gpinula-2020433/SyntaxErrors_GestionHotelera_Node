@@ -14,7 +14,7 @@ export const register = async(req, res)=>{
         user.password = await encrypt(user.password)
         user.role = 'CLIENT'
         await user.save()
-        return res.send({message: `Register succesfuly, can be logged with username: ${user.username}`})
+        return res.send({message: `Registro Satisfactorio ya puedes iniciar sesión: ${user.name}`})
     } catch (error) {
         return res.status(500).send({message: 'General error with user registration', error})
     }
@@ -46,13 +46,13 @@ export const login = async(req,res)=>{
             let token = await generateJwt(loggedUser)
             return res.send(
                 {
-                    message: `Welcome ${user.name}`,
+                    message: `Bienvenido ${user.name}`,
                     loggedUser,
                     token
                 }
             )
         } 
-        return res.status(400).send({message:'Invalid credentials'})
+        return res.status(400).send({message:'Credenciales inválidas'})
     } catch (err) {
         return res.status(500).send({message:'General error with login function', err})
     }
