@@ -11,7 +11,7 @@ const api = Router()
 
 
 api.get('/getAll', [validateJwt, isAdmin], getAllInvoices)
-api.get('/getCustomer/:id', [validateJwt, isClient], getInvoicesByCustomer)
+api.get('/getCustomer/', [validateJwt, isClient], getInvoicesByCustomer)
 api.get('/getId/:id', [validateJwt, isAdmin], getInvoiceById)
 api.put('/update/:id', [validateJwt, isAdmin, validateUpdateInvoice], updateInvoice)
 

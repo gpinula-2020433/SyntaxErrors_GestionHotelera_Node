@@ -14,20 +14,38 @@ export const getAllInvoices = async (req, res) => {
   }
 }
 
-// Obtener facturas por cliente
 export const getInvoicesByCustomer = async (req, res) => {
   try {
-    const { id } = req.params
+    const id = req.user.uid;
+
     const invoices = await Invoice.find({ customer: id })
-      .populate('room', 'roomNumber pricePerNight')
+      .populate({
+        path: 'room',
+        select: 'roomNumber type pricePerNight roomDescription hotel',
+        populate: {
+          path: 'hotel',
+          select: 'name address' // O cualquier campo del Hotel que desees
+        }
+      })
+      .populate({
+        path: 'customer',
+        select: 'name surname'
+      });
 
     if (invoices.length === 0) {
-      return res.status(404).send({ success: false, message: 'No invoices found for this customer' })
+      return res.status(404).send({
+        success: false,
+        message: 'No invoices found for this customer'
+      });
     }
 
-    return res.send({ success: true, invoices })
+    return res.send({ success: true, invoices });
   } catch (err) {
-    return res.status(500).send({ success: false, message: 'General error', err })
+    return res.status(500).send({
+      success: false,
+      message: 'General error',
+      err
+    });
   }
 }
 
